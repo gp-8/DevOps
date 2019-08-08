@@ -28,7 +28,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.napier.sem.App</mainClass>
+                            <mainClass>DevOps_Group_8.App</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
