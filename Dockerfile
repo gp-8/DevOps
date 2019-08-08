@@ -1,4 +1,4 @@
 FROM openjdk:latest
-COPY ./target/classes/group8 /tmp/group8
+COPY ./target/classes/DevOps_Group_8 /tmp/DevOps_Group_8
 WORKDIR /tmp
-ENTRYPOINT ["java", "group8.script"]
+ENTRYPOINT ["java", "DevOps_Group_8.App"]
