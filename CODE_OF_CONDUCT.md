@@ -30,12 +30,14 @@ misuing data, such manners are prohibited and violated as the main part of the c
 
 Every member should be honest about their qualifications and better not to be hesitated 
 in confessing each limitation to their competence for completing a single task.As the most
-siginificant fact to be noticed that,each member should not misrepresent the organization's policies or procedures.
+siginificant fact to be noticed that,each member should not misrepresent the organization's 
+policies or procedures.
 
 Be considerate
 --------------
 Each members are depending on each other for producing the best work as much as possible. 
-Every decisions will affect organization growth. Every members should consider the consequences while making decisions.
+Every decisions will affect organization growth. Every members should consider the consequences 
+while making decisions.
 
 Be respectful 
 -------------
@@ -48,17 +50,18 @@ Choose your words carefully
 Always conduct yourself professionally. Be kind to others. Do not insult or put down others.
 Harassment and exclusionary behavior aren't acceptable. This includes, but is not limited to: - Threats of violence. 
 - Discriminatory jokes and language. - Sharing sexually explicit or violent material via electronic devices or other means. 
-- Personal insults, especially those using racist or sexist terms. - Unwelcome sexual attention. - Advocating for, or encouraging,any of the above behavior.
+- Personal insults, especially those using racist or sexist terms. - Unwelcome sexual attention. - Advocating for, or encouraging,
+any of the above behavior.
 
 Do not harass others 
 --------------------
 In general, if someone asks you to stop something, then stop. When we disagree, try to understand why. 
-Differences of opinion and disagreements are mostly unavoidable. What is important is that we resolve disagreements and differing views constructively.
+Differences of opinion and disagreements are mostly unavoidable. What is important is that we resolve disagreements and differing 
+views constructively.
 
-Our differences can be our strengths
-------------------------------------
+Our differences can be our strengths. 
 We can find strength in diversity. Different people have different perspectives on issues, and that can be valuable for solving 
-problems or generating new ideas. Being unable to understand why someone holds a viewpoint doesn’t mean that they’re wrong. 
-Don’t forget that we all make mistakes, and blaming each other doesn’t get us anywhere. Instead, focus on resolving issues and learning from mistakes.
+problems or generating new ideas. Being unable to understand why someone holds a viewpoint doesn’t mean that they’re wrong. Don’t forget that we all make mistakes, and blaming each 
+other doesn’t get us anywhere. Instead, focus on resolving issues and learning from mistakes.
 
 
