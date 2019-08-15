@@ -4131,7 +4131,7 @@ COMMIT;
 DROP TABLE IF EXISTS `country`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `country` (
+    CREATE TABLE `country` (
   `Code` CHAR(3) NOT NULL DEFAULT '',
   `Name` CHAR(52) NOT NULL DEFAULT '',
   `Continent` enum('Asia','Europe','North America','Africa','Oceania','Antarctica','South America') NOT NULL DEFAULT 'Asia',
