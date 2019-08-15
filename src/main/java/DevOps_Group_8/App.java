@@ -1,6 +1,8 @@
 package DevOps_Group_8;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 /**
  * 
  */
@@ -14,10 +16,8 @@ public class App {
         a.connect();
 
         // Get City
-        City city = a.getCity(1);
-        // Display results
-        a.displayCity(city);
-
+        ArrayList<City> cities=a.getCity();
+        a.displayCity(cities);
         // Disconnect from database
         a.disconnect();
     }
@@ -85,9 +85,9 @@ public class App {
             }
         }
     }
-    public City getCity(int ID)
+    public ArrayList<City> getCity()
     {
-        City city = null;
+        ArrayList<City> cities = new ArrayList<>();
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -95,7 +95,7 @@ public class App {
             String strSelect =
                     "SELECT Name, CountryCode, District, Population "
                             + "FROM city "
-                            + "WHERE ID = " + ID;
+                            + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             if (rset == null) {
@@ -103,12 +103,13 @@ public class App {
             } else {
 //             Return new city if valid.
 //             Check one is returned
-                if (rset.next()) {
-                    city = new City();
+                while (rset.next()) {
+                 City   city = new City();
                     city.Name = rset.getString("Name");
                     city.CountryCode = rset.getString("CountryCode");
                     city.District = rset.getString("District");
                     city.Population = rset.getInt("Population");
+                    cities.add(city);
                 }
             }
         }
@@ -117,19 +118,16 @@ public class App {
             System.out.println(e.getMessage());
             System.out.println("Failed to get City details");
         }
-        return city;
+        return cities;
     }
-    public void displayCity(City city)
+    public void displayCity(ArrayList<City> cities)
     {
-        if (city != null)
-        {
-            System.out.println(
-                    city.ID + " "
-                            + city.Name + " "
-                            + city.CountryCode + "\n"
-                            + city.District + "\n"
-                            + city.Population + "\n");
-        }
+      for(City c:cities)
+      {
+          System.out.println(c.CountryCode+"\t"+c.District+"\t"+c.Name+"\t"+c.Population);
+
+
+      }
     }
 
 }
