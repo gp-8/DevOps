@@ -1,0 +1,18 @@
+@startuml
+
+actor Org as "Organization"
+
+rectangle Database
+
+rectangle "Population System" {
+    usecase UC as "Get reports
+    by population"
+
+    usecase UCa as "Print Population Reports"
+
+    Org - UC
+    UC ..> UCa : include
+    UC - Database
+}
+
+@enduml
