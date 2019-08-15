@@ -15,9 +15,13 @@ public class App {
         // Connect to database
         a.connect();
 
-        // Get City
+        // Get All the countries in a continent organised by largest population to smallest.
         ArrayList<Country> countries=a.countries_continent_largest_to_smallest();
         a.displayCountries_continent_largest_to_smallest(countries);
+        // All the countries in a region organised by largest population to smallest.
+        ArrayList<Country> Countries=a.countries_region_largest_to_smallest();
+        a.displayCountries_region_largest_to_smallest(Countries);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -123,12 +127,61 @@ public class App {
     }
     public void displayCountries_continent_largest_to_smallest(ArrayList<Country> countries)
     {
+        System.out.print("***********************countries in a continent organised by largest population to smallest***********************\n");
         System.out.println(String.format("%-30s %-25s %-25s %-20s","Name","Region","LocalName","Population"));
       for(Country c:countries)
       {
           System.out.println(String.format("%-30s %-25s %-25s %-20s",c.Name,c.Region,c.LocalName,c.Population));
 
       }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<Country> countries_region_largest_to_smallest()
+    {
+        ArrayList<Country> Countries = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, Continent, LocalName, Population "
+                            + "FROM country "
+                            + "WHERE Region = 'Middle East' "
+                            + "ORDER BY Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+//             Return new city if valid.
+//             Check one is returned
+                while (rset.next()) {
+                    Country country = new Country();
+                    country.Name = rset.getString("Name");
+                    country.Continent = rset.getString("Continent");
+                    country.LocalName = rset.getString("LocalName");
+                    country.Population = rset.getInt("Population");
+                    Countries.add(country);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+        }
+        return Countries;
+    }
+    public void displayCountries_region_largest_to_smallest(ArrayList<Country> Countries)
+    {
+        System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
+        System.out.println(String.format("%-30s %-25s %-25s %-20s","Name","Continent","LocalName","Population"));
+        for(Country c:Countries)
+        {
+            System.out.println(String.format("%-30s %-25s %-25s %-20s",c.Name,c.Continent,c.LocalName,c.Population));
+        }
+        System.out.print("******************************************************************************************************************\n");
     }
 
 }
