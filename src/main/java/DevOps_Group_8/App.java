@@ -16,10 +16,14 @@ public class App {
         a.connect();
 
         // Get City
-        a.getCity_continent();
+        //ArrayList<City> cities=a.getCity();
         //a.displayCity(cities);
+        // Get Country
+        ArrayList<Country> countries=a.getCountry();
+        a.displayCountry(countries);
         // Disconnect from database
         a.disconnect();
+
     }
     /**
      * Connection to MySQL database.
@@ -34,7 +38,7 @@ public class App {
         try
         {
             // Load Database driver
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         }
         catch (ClassNotFoundException e)
         {
@@ -85,7 +89,8 @@ public class App {
             }
         }
     }
-    public void getCity_continent()
+
+    /*public ArrayList<City> getCity()
     {
         ArrayList<City> cities = new ArrayList<>();
         try {
@@ -93,9 +98,8 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT country.continent, country.Name,city.Name, city.Population "
-                            + "FROM city,country "
-                            +"WHERE city.CountryCode = country.Code AND country.continent='Asia'"
+                    "SELECT Name, CountryCode, District, Population "
+                            + "FROM city "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -104,11 +108,13 @@ public class App {
             } else {
 //             Return new city if valid.
 //             Check one is returned
-                //System.out.printf("%20s%20s%20s%20d","Continent","Country","City","Population");
                 while (rset.next()) {
-                    System.out.printf("%20s%20s%20s%20d",rset.getString(1),rset.getString(2),rset.getString(3),rset.getInt(4));
-                    System.out.println("\n");
-                    //System.out.printf("",rset.getString(1)+ " \t"+rset.getString(2)+"\t"+rset.getString(3)+"\t"+rset.getInt(4));
+                    City   city = new City();
+                    city.Name = rset.getString("Name");
+                    city.CountryCode = rset.getString("CountryCode");
+                    city.District = rset.getString("District");
+                    city.Population = rset.getInt("Population");
+                    cities.add(city);
                 }
             }
         }
@@ -117,15 +123,62 @@ public class App {
             System.out.println(e.getMessage());
             System.out.println("Failed to get City details");
         }
-
+        return cities;
     }
     public void displayCity(ArrayList<City> cities)
     {
-      for(City c:cities)
-      {
-          System.out.println(c.CountryCode+"\t"+c.District+"\t"+c.Name+"\t"+c.Population);
+        for(City c:cities)
+        {
+            System.out.println(c.CountryCode+"\t"+c.District+"\t"+c.Name+"\t"+c.Population);
 
-      }
+        }
+    }*/
+    public ArrayList<Country> getCountry()
+    {
+        ArrayList<Country> countries = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT  Code, Name, Continent, Region, IndepYear, Population, Capital, Code2 "
+                            + "FROM country "
+                            + "ORDER BY country.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+//             Return new country if valid.
+//             Check one is returned
+                while (rset.next()) {
+                    Country   country = new Country();
+                    country.Code = rset.getString("Code");
+                    country.Name = rset.getString("Name");
+                    country.Continent = rset.getString("Continent");
+                    country.Region = rset.getString("Region");
+                    country.IndepYear = rset.getInt("IndepYear");
+                    country.Population = rset.getInt("Population");
+                    country.Capital = rset.getInt("Capital");
+                    country.Code2 = rset.getString("Code2");
+                    countries.add(country);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+        }
+        return countries;
+    }
+    public void displayCountry(ArrayList<Country> countries)
+    {
+        for(Country co:countries)
+        {
+            System.out.println(co.Code+"\t"+co.Name+"\t"+co.Continent+"\t"+co.Region+"\t"+co.IndepYear+"\t"+co.Population+"\t"+co.Capital+"\t"+co.Code2);
+
+        }
     }
 
 }
