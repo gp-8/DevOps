@@ -4,22 +4,22 @@ public class Country {
     /**
      * Country Code
      */
-    public String Country_Code;
+    public String Code;
     /**
      * Country Name
      */
-    public String Country_Name;
+    public String Name;
     public String Continent;
     public String Region;
-    public Float Surface_Area;
-    public int Indep_Year;
+    public Float SurfaceArea;
+    public int IndepYear;
     public int Population;
-    public Float Life_Expectancy;
+    public Float LifeExpectancy;
     public Float GNP;
-    public Float GNPold;
+    public Float GNPOld;
     public String LocalName;
     public String GovernmentForm;
-    public String HeadofState;
+    public String HeadOfState;
     public int Capital;
     public String Code2;
 
