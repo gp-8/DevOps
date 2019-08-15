@@ -80,7 +80,7 @@ public class App {
             String strSelect =
                     "SELECT city.ID, city.Name, country.Name, country.Continent, city.Population "
                             + "FROM city, country "
-                            + "WHERE city.ID = country.Capital "
+                            + "WHERE city.ID = country.Capital AND country.Continent='Asia'"
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
