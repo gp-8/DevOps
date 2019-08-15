@@ -13,6 +13,11 @@ public class App {
         // Connect to database
         a.connect();
 
+        // Get City
+        City city = a.getCity(1);
+        // Display results
+        a.displayCity(city);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -46,7 +51,7 @@ public class App {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -78,6 +83,52 @@ public class App {
             {
                 System.out.println("Error closing connection to database");
             }
+        }
+    }
+    public City getCity(int ID)
+    {
+        City city = null;
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, CountryCode, District, Population "
+                            + "FROM city "
+                            + "WHERE ID = " + ID;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+//             Return new city if valid.
+//             Check one is returned
+                if (rset.next()) {
+                    city = new City();
+                    city.Name = rset.getString("Name");
+                    city.CountryCode = rset.getString("CountryCode");
+                    city.District = rset.getString("District");
+                    city.Population = rset.getInt("Population");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+        }
+        return city;
+    }
+    public void displayCity(City city)
+    {
+        if (city != null)
+        {
+            System.out.println(
+                    city.ID + " "
+                            + city.Name + " "
+                            + city.CountryCode + "\n"
+                            + city.District + "\n"
+                            + city.Population + "\n");
         }
     }
 
