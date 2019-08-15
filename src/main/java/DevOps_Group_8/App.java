@@ -15,7 +15,7 @@ public class App {
         a.connect();
 
         // Get City by Country
-        a.getCitybyDistrict();
+        a.getCapitalCities();
         // Disconnect from database
         a.disconnect();
 
@@ -71,16 +71,16 @@ public class App {
         }
     }
 
-    public void getCitybyDistrict() {
+    public void getCapitalCities() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.ID, city.Name, city.CountryCode, District, city.Population "
-                            + "FROM city "
-                            + "WHERE District = 'California'"
+                    "SELECT city.ID, city.Name, country.Name, country.Continent, city.Population "
+                            + "FROM city, country "
+                            + "WHERE city.ID = country.Capital "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -90,7 +90,8 @@ public class App {
 //             Return new city if valid.
 //             Check one is returned
                 while (rset.next()) {
-                    System.out.printf("%20s%20s%20s%20s%20d", rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5));
+                    System.out.printf("%20s%20s%20s%20s%20d", rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
+                            rset.getInt(5));
                     System.out.println("\n");
                 }
             }
