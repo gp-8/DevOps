@@ -126,7 +126,6 @@ public class App {
       {
           System.out.println(c.CountryCode+"\t"+c.District+"\t"+c.Name+"\t"+c.Population);
 
-
       }
     }
 
