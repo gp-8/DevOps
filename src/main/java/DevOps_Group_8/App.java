@@ -16,8 +16,8 @@ public class App {
         a.connect();
 
         // Get City
-        ArrayList<City> cities=a.getCity();
-        a.displayCity(cities);
+        ArrayList<Country> countries=a.countries_world_largest_to_smallest();
+        a.displayCountries_world_largest_to_smallest(countries);
         // Disconnect from database
         a.disconnect();
     }
@@ -85,17 +85,17 @@ public class App {
             }
         }
     }
-    public ArrayList<City> getCity()
+    public ArrayList<Country> countries_world_largest_to_smallest()
     {
-        ArrayList<City> cities = new ArrayList<>();
+        ArrayList<Country> countries = new ArrayList<>();
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, CountryCode, District, Population "
-                            + "FROM city "
-                            + "ORDER BY city.Population DESC";
+                    "SELECT Name, Continent, Region, LocalName, Population "
+                            + "FROM country "
+                            + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             if (rset == null) {
@@ -104,12 +104,13 @@ public class App {
 //             Return new city if valid.
 //             Check one is returned
                 while (rset.next()) {
-                 City   city = new City();
-                    city.Name = rset.getString("Name");
-                    city.CountryCode = rset.getString("CountryCode");
-                    city.District = rset.getString("District");
-                    city.Population = rset.getInt("Population");
-                    cities.add(city);
+                 Country country = new Country();
+                    country.Name = rset.getString("Name");
+                    country.Continent = rset.getString("Continent");
+                    country.Region = rset.getString("Region");
+                    country.LocalName = rset.getString("LocalName");
+                    country.Population = rset.getInt("Population");
+                    countries.add(country);
                 }
             }
         }
@@ -118,13 +119,14 @@ public class App {
             System.out.println(e.getMessage());
             System.out.println("Failed to get City details");
         }
-        return cities;
+        return countries;
     }
-    public void displayCity(ArrayList<City> cities)
+    public void displayCountries_world_largest_to_smallest(ArrayList<Country> countries)
     {
-      for(City c:cities)
+        System.out.println(String.format("%-30s %-25s %-25s %-30s %-20s","Name","Continent","Region","LocalName","Population"));
+      for(Country c:countries)
       {
-          System.out.println(c.CountryCode+"\t"+c.District+"\t"+c.Name+"\t"+c.Population);
+          System.out.println(String.format("%-30s %-25s %-25s %-30s %-20s",c.Name,c.Continent,c.Region,c.LocalName,c.Population));
 
       }
     }
