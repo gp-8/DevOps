@@ -16,8 +16,8 @@ public class App {
         a.connect();
 
         // Get City
-        ArrayList<Country> countries=a.countries_world_largest_to_smallest();
-        a.displayCountries_world_largest_to_smallest(countries);
+        ArrayList<Country> countries=a.countries_continent_largest_to_smallest();
+        a.displayCountries_continent_largest_to_smallest(countries);
         // Disconnect from database
         a.disconnect();
     }
@@ -85,7 +85,7 @@ public class App {
             }
         }
     }
-    public ArrayList<Country> countries_world_largest_to_smallest()
+    public ArrayList<Country> countries_continent_largest_to_smallest()
     {
         ArrayList<Country> countries = new ArrayList<>();
         try {
@@ -93,8 +93,9 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, Continent, Region, LocalName, Population "
+                    "SELECT Name, Region, LocalName, Population "
                             + "FROM country "
+                            + "WHERE Continent = 'Europe' "
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -106,7 +107,6 @@ public class App {
                 while (rset.next()) {
                  Country country = new Country();
                     country.Name = rset.getString("Name");
-                    country.Continent = rset.getString("Continent");
                     country.Region = rset.getString("Region");
                     country.LocalName = rset.getString("LocalName");
                     country.Population = rset.getInt("Population");
@@ -117,16 +117,16 @@ public class App {
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
+            System.out.println("Failed to get Country details");
         }
         return countries;
     }
-    public void displayCountries_world_largest_to_smallest(ArrayList<Country> countries)
+    public void displayCountries_continent_largest_to_smallest(ArrayList<Country> countries)
     {
-        System.out.println(String.format("%-30s %-25s %-25s %-30s %-20s","Name","Continent","Region","LocalName","Population"));
+        System.out.println(String.format("%-30s %-25s %-25s %-20s","Name","Region","LocalName","Population"));
       for(Country c:countries)
       {
-          System.out.println(String.format("%-30s %-25s %-25s %-30s %-20s",c.Name,c.Continent,c.Region,c.LocalName,c.Population));
+          System.out.println(String.format("%-30s %-25s %-25s %-20s",c.Name,c.Region,c.LocalName,c.Population));
 
       }
     }
