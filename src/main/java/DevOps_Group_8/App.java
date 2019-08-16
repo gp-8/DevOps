@@ -516,6 +516,7 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
+    //retrieving captial's population within a region
     public void getCapitalCitiesbyRegion() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
