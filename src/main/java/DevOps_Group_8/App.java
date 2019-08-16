@@ -15,7 +15,7 @@ public class App {
         a.connect();
 
         // Get City by Country
-        a.getCapitalCities();
+        a.getCapitalCitiesbyRegion();
         // Disconnect from database
         a.disconnect();
 
@@ -71,7 +71,7 @@ public class App {
         }
     }
 
-    public void getCapitalCities() {
+    public void getCapitalCitiesbyRegion() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
             // Create an SQL statement
