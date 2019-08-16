@@ -160,6 +160,7 @@ public class App {
         }
         return cous;
     }
+    //displaying countries information
     public void displayCountry(ArrayList<Country> cous)
     {
         System.out.print("***********************countries in the world organised by largest population to smallest***********************\n");
@@ -171,7 +172,7 @@ public class App {
         }
         System.out.print("******************************************************************************************************************\n");
     }
-
+    //retrieving population of the countries within a continent
     public ArrayList<Country> countries_continent_largest_to_smallest()
     {
         ArrayList<Country> countries = new ArrayList<>();
@@ -220,6 +221,7 @@ public class App {
         System.out.print("******************************************************************************************************************\n");
     }
 
+    //retrieving countries's population within a region
     public ArrayList<Country> countries_region_largest_to_smallest()
     {
         ArrayList<Country> Countries = new ArrayList<>();
@@ -266,6 +268,7 @@ public class App {
         }
         System.out.print("******************************************************************************************************************\n");
     }
+    //retrieving population of the cities in the world largest to smallest
     public ArrayList<City> getCity()
     {
         ArrayList<City> cities = new ArrayList<>();
@@ -311,6 +314,7 @@ public class App {
         }
         System.out.print("******************************************************************************************************************\n");
     }
+    //retrieving cities's population within a continent
     public void getCity_continent() {
         ArrayList<City> cities = new ArrayList<>();
         try {
@@ -344,6 +348,7 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
+    //getting cities' population within region
     public void getCity_Region()
     {
         ArrayList<City> cities = new ArrayList<>();
@@ -379,6 +384,7 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
+    //retrieving cities' population for a country
     public void getCitybyCountry() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
@@ -411,6 +417,7 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
+    //retrieving cities' population for a district
     public void getCitybyDistrict() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
@@ -443,6 +450,7 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
+    //getting capital cities in the world
     public void getCapitalCities() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
@@ -475,6 +483,7 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
+    //retrieving capital's population for a continent
     public void getCapitalCitiesbyContinent() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
@@ -506,6 +515,7 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
+    //retrieving captial's population within a region
     public void getCapitalCitiesbyRegion() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
