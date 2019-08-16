@@ -265,9 +265,10 @@ public class App {
             } else {
 //             Return new city if valid.
 //             Check one is returned
+                System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
+                System.out.printf("%20s%20s%20s%20s%20s", "Name","ID","CityName","CountryCode","Population");
+                System.out.println("\n");
                 while (rset.next())
-                    System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
-                System.out.printf("%20s%20s%20s%20s%20d", "Name","ID","CityName","CountryCode","Population");
                 {
                     System.out.printf("%20s%20s%20s%20s%20d", rset.getString(1), rset.getInt(2), rset.getString(3), rset.getString(4), rset.getInt(5));
                     System.out.println("\n");
@@ -297,9 +298,10 @@ public class App {
             } else {
 //             Return new city if valid.
 //             Check one is returned
+                System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
+                System.out.printf("%20s%20s%20s%20s%20s", "ID","Name","CityCode","District","Population");
+                System.out.println("\n");
                 while (rset.next())
-                    System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
-                System.out.printf("%20s%20s%20s%20s%20d", "ID","Name","CityCode","District","Population");
                 {
                     System.out.printf("%20s%20s%20s%20s%20d", rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5));
                     System.out.println("\n");
