@@ -33,6 +33,9 @@ public class App {
         ArrayList<City> cities = a.getCity();
         a.displayCity(cities);
 
+        //All the cities in a continent organised by largest population to smallest.
+        a.getCity_continent();
+
         // All the cities in a country organised by largest population to smallest.
         a.getCitybyCountry();
 
@@ -305,6 +308,39 @@ public class App {
             System.out.println(String.format("%-30s %-25s %-25s %-20s",c.CountryCode,c.District,c.Name,c.Population));
         }
         System.out.print("******************************************************************************************************************\n");
+    }
+    public void getCity_continent() {
+        ArrayList<City> cities = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.continent, country.Name,city.Name, city.Population "
+                            + "FROM city,country "
+                            + "WHERE city.CountryCode = country.Code AND country.continent='Asia'"
+                            + "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+//             Return new city if valid.
+//             Check one is returned
+                //System.out.printf("%20s%20s%20s%20d","Continent","Country","City","Population");
+                System.out.print("***********************cities in a continent organised by largest population to smallest***********************\n");
+                System.out.printf("%20s%20s%20s%20s", "Continent","Name","CityName","Population\n");
+                while (rset.next()) {
+                    System.out.printf("%20s%20s%20s%20d", rset.getString(1), rset.getString(2), rset.getString(3), rset.getInt(4));
+                    System.out.println("\n");
+                    //System.out.printf("",rset.getString(1)+ " \t"+rset.getString(2)+"\t"+rset.getString(3)+"\t"+rset.getInt(4));
+                }
+                System.out.print("******************************************************************************************************************\n");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+        }
     }
     public void getCitybyCountry() {
         ArrayList<City> city_country = new ArrayList<>();
