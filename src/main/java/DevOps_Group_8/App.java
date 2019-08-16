@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * 
+ *
  */
 public class App {
     public static void main(String[] args)
@@ -16,7 +16,8 @@ public class App {
         a.connect();
 
         // Get City
-        a.getCity_continent();
+        //a.getCity_continent();
+        a.getCity_Region();
         //a.displayCity(cities);
         // Disconnect from database
         a.disconnect();
@@ -104,7 +105,6 @@ public class App {
             } else {
 //             Return new city if valid.
 //             Check one is returned
-                //System.out.printf("%20s%20s%20s%20d","Continent","Country","City","Population");
                 while (rset.next()) {
                     System.out.printf("%20s%20s%20s%20d",rset.getString(1),rset.getString(2),rset.getString(3),rset.getInt(4));
                     System.out.println("\n");
@@ -117,15 +117,38 @@ public class App {
             System.out.println(e.getMessage());
             System.out.println("Failed to get City details");
         }
-
     }
-    public void displayCity(ArrayList<City> cities)
+
+    public void getCity_Region()
     {
-      for(City c:cities)
-      {
-          System.out.println(c.CountryCode+"\t"+c.District+"\t"+c.Name+"\t"+c.Population);
+        ArrayList<City> cities = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.Population, country.Region "
+                            + "FROM country, city "
+                            + "WHERE city.ID=country.Capital AND country.Region='Southeast Asia'"
+                            + "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
 
-      }
-    }
-
+//             Return new city if valid.
+//             Check one is returned
+                while (rset.next()) {
+                    System.out.printf("%20s%20d%20s",rset.getString(1),rset.getInt(2),rset.getString(3));
+                    System.out.println("\n");
+                }
+            }
+        }
+                catch (Exception e)
+                {
+                    System.out.println(e.getMessage());
+                    System.out.println("Failed to get City details");
+                }
+        }
 }
