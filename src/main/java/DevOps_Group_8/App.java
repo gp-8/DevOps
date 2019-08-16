@@ -27,6 +27,9 @@ public class App {
         ArrayList<Country> Countries=a.countries_region_largest_to_smallest();
         a.displayCountries_region_largest_to_smallest(Countries);
 
+        // All the cities in a country organised by largest population to smallest.
+        a.getCitybyCountry();
+
         // Disconnect from database
         a.disconnect();
     }
@@ -137,6 +140,7 @@ public class App {
     public void displayCountry(ArrayList<Country> cous)
     {
         System.out.print("***********************countries in the world organised by largest population to smallest***********************\n");
+        System.out.println(String.format("%-30s %-25s %-25s %-20s %-30s %-25s %-25s %-20s","Code","Name","Continent","Region","IndepYear","Population","Capital","Code2"));
         for(Country co:cous)
         {
             System.out.println(String.format("%-30s %-25s %-25s %-20s %-30s %-25s %-25s %-20s",co.Code,co.Name,co.Continent,co.Region,co.IndepYear,co.Population,co.Capital,co.Code2));
@@ -238,6 +242,39 @@ public class App {
             System.out.println(String.format("%-30s %-25s %-25s %-20s",c.Name,c.Continent,c.LocalName,c.Population));
         }
         System.out.print("******************************************************************************************************************\n");
+    }
+
+    public void getCitybyCountry() {
+        ArrayList<City> city_country = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Name, city.ID, city.Name, city.CountryCode, city.Population "
+                            + "FROM city, country "
+                            + "WHERE city.CountryCode = country.Code AND country.Name = 'Myanmar'"
+                            + "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+//             Return new city if valid.
+//             Check one is returned
+                while (rset.next())
+                    System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
+                System.out.printf("%20s%20s%20s%20s%20d", "Name","ID","CityName","CountryCode","Population");
+                {
+                    System.out.printf("%20s%20s%20s%20s%20d", rset.getString(1), rset.getInt(2), rset.getString(3), rset.getString(4), rset.getInt(5));
+                    System.out.println("\n");
+                }
+                System.out.print("******************************************************************************************************************\n");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+        }
     }
 
 }
