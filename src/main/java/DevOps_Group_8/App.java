@@ -268,9 +268,8 @@ public class App {
             } else {
 //             Return new city if valid.
 //             Check one is returned
-                System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
-                System.out.printf("%20s%20s%20s%20s%20s", "Name","ID","CityName","CountryCode","Population");
-                System.out.println("\n");
+                System.out.print("***********************cities in a country organised by largest population to smallest***********************\n");
+                System.out.printf("%20s%20s%20s%20s%20s", "Name","ID","CityName","CountryCode","Population\n");
                 while (rset.next())
                 {
                     System.out.printf("%20s%20s%20s%20s%20d", rset.getString(1), rset.getInt(2), rset.getString(3), rset.getString(4), rset.getInt(5));
@@ -301,9 +300,8 @@ public class App {
             } else {
 //             Return new city if valid.
 //             Check one is returned
-                System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
-                System.out.printf("%20s%20s%20s%20s%20s", "ID","Name","CityCode","District","Population");
-                System.out.println("\n");
+                System.out.print("***********************cities in a district organised by largest population to smallest***********************\n");
+                System.out.printf("%20s%20s%20s%20s%20s", "ID","Name","CityCode","District","Population\n");
                 while (rset.next())
                 {
                     System.out.printf("%20s%20s%20s%20s%20d", rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getInt(5));
@@ -334,9 +332,8 @@ public class App {
             } else {
 //             Return new city if valid.
 //             Check one is returned
-                System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
-                System.out.printf("%20s%20s%20s%20s%20s", "ID","Name","CountryName","Continent","Population");
-                System.out.println("\n");
+                System.out.print("***********************capital cities in the world organised by largest population to smallest***********************\n");
+                System.out.printf("%20s%20s%20s%20s%20s", "ID","Name","CountryName","Continent","Population\n");
                 while (rset.next()) {
                     System.out.printf("%20s%20s%20s%20s%20d", rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4),
                             rset.getInt(5));
@@ -349,5 +346,5 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
-    
+
 }
