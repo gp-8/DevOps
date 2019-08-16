@@ -173,7 +173,7 @@ public class App {
         }
         System.out.print("******************************************************************************************************************\n");
     }
-    //retrieving population of the cities within a continent
+    //retrieving population of the countries within a continent
     public ArrayList<Country> countries_continent_largest_to_smallest()
     {
         ArrayList<Country> countries = new ArrayList<>();
@@ -221,7 +221,7 @@ public class App {
       }
         System.out.print("******************************************************************************************************************\n");
     }
-
+    //retrieving countries's population within a region
     public ArrayList<Country> countries_region_largest_to_smallest()
     {
         ArrayList<Country> Countries = new ArrayList<>();
@@ -268,6 +268,7 @@ public class App {
         }
         System.out.print("******************************************************************************************************************\n");
     }
+    //retrieving population of the cities in the world largest to smallest
     public ArrayList<City> getCity()
     {
         ArrayList<City> cities = new ArrayList<>();
