@@ -15,15 +15,15 @@ public class App {
         // Connect to database
         a.connect();
 
-        // Get City
-        //ArrayList<City> cities=a.getCity();
-        //a.displayCity(cities);
-        // Get Country
-        ArrayList<Country> countries=a.getCountry();
-        a.displayCountry(countries);
+        // Get All the countries in a continent organised by largest population to smallest.
+        ArrayList<Country> countries=a.countries_continent_largest_to_smallest();
+        a.displayCountries_continent_largest_to_smallest(countries);
+        // All the countries in a region organised by largest population to smallest.
+        ArrayList<Country> Countries=a.countries_region_largest_to_smallest();
+        a.displayCountries_region_largest_to_smallest(Countries);
+
         // Disconnect from database
         a.disconnect();
-
     }
     /**
      * Connection to MySQL database.
@@ -38,7 +38,7 @@ public class App {
         try
         {
             // Load Database driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
         }
         catch (ClassNotFoundException e)
         {
@@ -89,18 +89,18 @@ public class App {
             }
         }
     }
-
-    /*public ArrayList<City> getCity()
+    public ArrayList<Country> countries_continent_largest_to_smallest()
     {
-        ArrayList<City> cities = new ArrayList<>();
+        ArrayList<Country> countries = new ArrayList<>();
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Name, CountryCode, District, Population "
-                            + "FROM city "
-                            + "ORDER BY city.Population DESC";
+                    "SELECT Name, Region, LocalName, Population "
+                            + "FROM country "
+                            + "WHERE Continent = 'Europe' "
+                            + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             if (rset == null) {
@@ -109,58 +109,11 @@ public class App {
 //             Return new city if valid.
 //             Check one is returned
                 while (rset.next()) {
-                    City   city = new City();
-                    city.Name = rset.getString("Name");
-                    city.CountryCode = rset.getString("CountryCode");
-                    city.District = rset.getString("District");
-                    city.Population = rset.getInt("Population");
-                    cities.add(city);
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
-        }
-        return cities;
-    }
-    public void displayCity(ArrayList<City> cities)
-    {
-        for(City c:cities)
-        {
-            System.out.println(c.CountryCode+"\t"+c.District+"\t"+c.Name+"\t"+c.Population);
-
-        }
-    }*/
-    public ArrayList<Country> getCountry()
-    {
-        ArrayList<Country> countries = new ArrayList<>();
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT  Code, Name, Continent, Region, IndepYear, Population, Capital, Code2 "
-                            + "FROM country "
-                            + "ORDER BY country.Population DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            if (rset == null) {
-                System.out.println("Not Found");
-            } else {
-//             Return new country if valid.
-//             Check one is returned
-                while (rset.next()) {
-                    Country   country = new Country();
-                    country.Code = rset.getString("Code");
+                 Country country = new Country();
                     country.Name = rset.getString("Name");
-                    country.Continent = rset.getString("Continent");
                     country.Region = rset.getString("Region");
-                    country.IndepYear = rset.getInt("IndepYear");
+                    country.LocalName = rset.getString("LocalName");
                     country.Population = rset.getInt("Population");
-                    country.Capital = rset.getInt("Capital");
-                    country.Code2 = rset.getString("Code2");
                     countries.add(country);
                 }
             }
@@ -172,13 +125,63 @@ public class App {
         }
         return countries;
     }
-    public void displayCountry(ArrayList<Country> countries)
+    public void displayCountries_continent_largest_to_smallest(ArrayList<Country> countries)
     {
-        for(Country co:countries)
-        {
-            System.out.println(co.Code+"\t"+co.Name+"\t"+co.Continent+"\t"+co.Region+"\t"+co.IndepYear+"\t"+co.Population+"\t"+co.Capital+"\t"+co.Code2);
+        System.out.print("***********************countries in a continent organised by largest population to smallest***********************\n");
+        System.out.println(String.format("%-30s %-25s %-25s %-20s","Name","Region","LocalName","Population"));
+      for(Country c:countries)
+      {
+          System.out.println(String.format("%-30s %-25s %-25s %-20s",c.Name,c.Region,c.LocalName,c.Population));
 
+      }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<Country> countries_region_largest_to_smallest()
+    {
+        ArrayList<Country> Countries = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, Continent, LocalName, Population "
+                            + "FROM country "
+                            + "WHERE Region = 'Middle East' "
+                            + "ORDER BY Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+//             Return new city if valid.
+//             Check one is returned
+                while (rset.next()) {
+                    Country country = new Country();
+                    country.Name = rset.getString("Name");
+                    country.Continent = rset.getString("Continent");
+                    country.LocalName = rset.getString("LocalName");
+                    country.Population = rset.getInt("Population");
+                    Countries.add(country);
+                }
+            }
         }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+        }
+        return Countries;
+    }
+    public void displayCountries_region_largest_to_smallest(ArrayList<Country> Countries)
+    {
+        System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
+        System.out.println(String.format("%-30s %-25s %-25s %-20s","Name","Continent","LocalName","Population"));
+        for(Country c:Countries)
+        {
+            System.out.println(String.format("%-30s %-25s %-25s %-20s",c.Name,c.Continent,c.LocalName,c.Population));
+        }
+        System.out.print("******************************************************************************************************************\n");
     }
 
 }
