@@ -36,6 +36,9 @@ public class App {
         //All the cities in a continent organised by largest population to smallest.
         a.getCity_continent();
 
+        //All the cities in a region organised by largest population to smallest.
+        a.getCity_Region();
+
         // All the cities in a country organised by largest population to smallest.
         a.getCitybyCountry();
 
@@ -338,6 +341,41 @@ public class App {
                 System.out.print("******************************************************************************************************************\n");
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+        }
+    }
+    public void getCity_Region()
+    {
+        ArrayList<City> cities = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.Population, country.Region "
+                            + "FROM country, city "
+                            + "WHERE city.ID=country.Capital AND country.Region='Southeast Asia'"
+                            + "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+
+//             Return new city if valid.
+//             Check one is returned
+                System.out.print("***********************cities in a region organised by largest population to smallest***********************\n");
+                System.out.printf("%20s%20s%20s%20s", "Name","Population","Region\n");
+                while (rset.next()) {
+                    System.out.printf("%20s%20d%20s",rset.getString(1),rset.getInt(2),rset.getString(3));
+                    System.out.println("\n");
+                }
+                System.out.print("******************************************************************************************************************\n");
+            }
+        }
+        catch (Exception e)
+        {
             System.out.println(e.getMessage());
             System.out.println("Failed to get City details");
         }
