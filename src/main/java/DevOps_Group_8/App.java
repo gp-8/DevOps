@@ -15,9 +15,14 @@ public class App {
         // Connect to database
         a.connect();
 
+        //All the countries in the world organised by largest population to smallest.
+        ArrayList<Country> cous = a.getCountry();
+        a.displayCountry(cous);
+
         // Get All the countries in a continent organised by largest population to smallest.
         ArrayList<Country> countries=a.countries_continent_largest_to_smallest();
         a.displayCountries_continent_largest_to_smallest(countries);
+
         // All the countries in a region organised by largest population to smallest.
         ArrayList<Country> Countries=a.countries_region_largest_to_smallest();
         a.displayCountries_region_largest_to_smallest(Countries);
@@ -89,6 +94,55 @@ public class App {
             }
         }
     }
+
+    public ArrayList<Country> getCountry()
+    {
+        ArrayList<Country> cous = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT  Code, Name, Continent, Region, IndepYear, Population, Capital, Code2 "
+                            + "FROM country "
+                            + "ORDER BY country.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+//             Return new country if valid.
+//             Check one is returned
+                while (rset.next()) {
+                    Country   country = new Country();
+                    country.Code = rset.getString("Code");
+                    country.Name = rset.getString("Name");
+                    country.Continent = rset.getString("Continent");
+                    country.Region = rset.getString("Region");
+                    country.IndepYear = rset.getInt("IndepYear");
+                    country.Population = rset.getInt("Population");
+                    country.Capital = rset.getInt("Capital");
+                    country.Code2 = rset.getString("Code2");
+                    cous.add(country);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+        }
+        return cous;
+    }
+    public void displayCountry(ArrayList<Country> cous)
+    {
+        for(Country co:cous)
+        {
+            System.out.println(co.Code+"\t"+co.Name+"\t"+co.Continent+"\t"+co.Region+"\t"+co.IndepYear+"\t"+co.Population+"\t"+co.Capital+"\t"+co.Code2);
+
+        }
+    }
+
     public ArrayList<Country> countries_continent_largest_to_smallest()
     {
         ArrayList<Country> countries = new ArrayList<>();
