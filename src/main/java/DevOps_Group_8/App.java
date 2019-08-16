@@ -136,11 +136,13 @@ public class App {
     }
     public void displayCountry(ArrayList<Country> cous)
     {
+        System.out.print("***********************countries in the world organised by largest population to smallest***********************\n");
         for(Country co:cous)
         {
-            System.out.println(co.Code+"\t"+co.Name+"\t"+co.Continent+"\t"+co.Region+"\t"+co.IndepYear+"\t"+co.Population+"\t"+co.Capital+"\t"+co.Code2);
+            System.out.println(String.format("%-30s %-25s %-25s %-20s %-30s %-25s %-25s %-20s",co.Code,co.Name,co.Continent,co.Region,co.IndepYear,co.Population,co.Capital,co.Code2));
 
         }
+        System.out.print("******************************************************************************************************************\n");
     }
 
     public ArrayList<Country> countries_continent_largest_to_smallest()
