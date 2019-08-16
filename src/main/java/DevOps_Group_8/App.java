@@ -385,6 +385,7 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
+    //retrieving cities' population for a country
     public void getCitybyCountry() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
@@ -417,6 +418,7 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
+    //retrieving cities' population for a district
     public void getCitybyDistrict() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
