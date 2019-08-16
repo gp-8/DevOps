@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * 
+ *
  */
 public class App {
     public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class App {
         a.connect();
 
         // Get City by Country
-        a.getCapitalCities();
+        a.getCapitalCitiesbyContinent();
         // Disconnect from database
         a.disconnect();
 
@@ -71,16 +71,16 @@ public class App {
         }
     }
 
-    public void getCapitalCities() {
+    public void getCapitalCitiesbyContinent() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.ID, city.Name, country.Name, country.Region, city.Population "
+                    "SELECT city.ID, city.Name, country.Name, country.Continent, city.Population "
                             + "FROM city, country "
-                            + "WHERE city.ID = country.Capital AND country.Region='Southeast Asia'"
+                            + "WHERE city.ID = country.Capital AND country.Continent = 'Asia'"
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
