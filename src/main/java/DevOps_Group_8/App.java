@@ -450,6 +450,7 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
+    //getting capital cities in the world
     public void getCapitalCities() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
@@ -482,6 +483,7 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
+    //retrieving capital's population for a continent
     public void getCapitalCitiesbyContinent() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
