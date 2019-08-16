@@ -315,6 +315,7 @@ public class App {
         }
         System.out.print("******************************************************************************************************************\n");
     }
+    //retrieving cities's population within a continent
     public void getCity_continent() {
         ArrayList<City> cities = new ArrayList<>();
         try {
@@ -348,6 +349,7 @@ public class App {
             System.out.println("Failed to get City details");
         }
     }
+    //getting cities' population within region
     public void getCity_Region()
     {
         ArrayList<City> cities = new ArrayList<>();
