@@ -161,6 +161,7 @@ public class App {
         }
         return cous;
     }
+    //displaying countries information
     public void displayCountry(ArrayList<Country> cous)
     {
         System.out.print("***********************countries in the world organised by largest population to smallest***********************\n");
@@ -172,7 +173,7 @@ public class App {
         }
         System.out.print("******************************************************************************************************************\n");
     }
-
+    //retrieving population of the countries within a continent
     public ArrayList<Country> countries_continent_largest_to_smallest()
     {
         ArrayList<Country> countries = new ArrayList<>();
