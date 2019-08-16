@@ -3,6 +3,8 @@ package DevOps_Group_8;
 import java.sql.*;
 import java.util.ArrayList;
 
+import static org.graalvm.compiler.nodeinfo.Verbosity.Name;
+
 /**
  * 
  */
@@ -26,6 +28,10 @@ public class App {
         // All the countries in a region organised by largest population to smallest.
         ArrayList<Country> Countries=a.countries_region_largest_to_smallest();
         a.displayCountries_region_largest_to_smallest(Countries);
+
+        //All the cities in the world organised by largest population to smallest.
+        ArrayList<City> cities = a.getCity();
+        a.displayCity(cities);
 
         // All the cities in a country organised by largest population to smallest.
         a.getCitybyCountry();
@@ -255,7 +261,51 @@ public class App {
         }
         System.out.print("******************************************************************************************************************\n");
     }
-
+    public ArrayList<City> getCity()
+    {
+        ArrayList<City> cities = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name, CountryCode, District, Population "
+                            + "FROM city "
+                            + "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+//             Return new city if valid.
+//             Check one is returned
+                while (rset.next()) {
+                    City   city = new City();
+                    city.Name = rset.getString("Name");
+                    city.CountryCode = rset.getString("CountryCode");
+                    city.District = rset.getString("District");
+                    city.Population = rset.getInt("Population");
+                    cities.add(city);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+        }
+        return cities;
+    }
+    public void displayCity(ArrayList<City> cities)
+    {
+        System.out.print("***********************cities in the world organised by largest population to smallest***********************\n");
+        System.out.println(String.format("%-30s %-25s %-25s %-20s","Name","Code","District","Population"));
+        for(City c:cities)
+        {
+            System.out.println(String.format("%-30s %-25s %-25s %-20s",c.CountryCode,c.District,c.Name,c.Population));
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
     public void getCitybyCountry() {
         ArrayList<City> city_country = new ArrayList<>();
         try {
