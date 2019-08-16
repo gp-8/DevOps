@@ -3,7 +3,6 @@ package DevOps_Group_8;
 import java.sql.*;
 import java.util.ArrayList;
 
-import static org.graalvm.compiler.nodeinfo.Verbosity.Name;
 
 /**
  * 
