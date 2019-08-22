@@ -1,6 +1,20 @@
 package DevOps_Group_8;
 
 public class City {
+    private String name;
+
+    private String district;
+    private int population;
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    private Country country;
     public String getName() {
         return name;
     }
@@ -9,13 +23,6 @@ public class City {
         this.name = name;
     }
 
-    public String getCountry_code() {
-        return country_code;
-    }
-
-    public void setCountry_code(String country_code) {
-        this.country_code = country_code;
-    }
 
     public String getDistrict() {
         return district;
@@ -33,8 +40,5 @@ public class City {
         this.population = population;
     }
 
-    private String name;
-    private String country_code;
-    private String district;
-    private int population;
+
 }

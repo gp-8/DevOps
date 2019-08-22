@@ -7,7 +7,7 @@ public class Country {
     private String region;
     private int population;
     private int capital;
-
+public Country(){}
     public String getCode() {
         return code;
     }
