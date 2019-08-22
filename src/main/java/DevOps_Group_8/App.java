@@ -60,12 +60,12 @@ public class App {
     /**
      * Connection to MySQL database.
      */
-    private Connection con = null;
+    public Connection con = null;
 
     /**
      * Connect to the MySQL database.
      */
-    private void connect()
+    public void connect()
     {
         try
         {
@@ -106,7 +106,7 @@ public class App {
     /**
      * Disconnect from the MySQL database.
      */
-    private void disconnect()
+    public void disconnect()
     {
         if (con != null)
         {
@@ -122,7 +122,7 @@ public class App {
         }
     }
 
-    private ArrayList<Country> getCountry()
+    public ArrayList<Country> getCountry()
     {
         ArrayList<Country> cous = new ArrayList<>();
         try {
@@ -157,7 +157,7 @@ public class App {
         return cous;
     }
     //displaying countries information
-    private void displayCountry(ArrayList<Country> cous)
+    public void displayCountry(ArrayList<Country> cous)
     {
         System.out.print("***********************countries in the world organised by largest population to smallest***********************\n");
         System.out.println(String.format("%-30s %-25s %-25s %-20s %-25s %-25s","Code","Name","Continent","Region","Population","Capital"));
@@ -170,7 +170,7 @@ public class App {
         System.out.print("******************************************************************************************************************\n");
     }
     //retrieving population of the countries within a continent
-    private ArrayList<Country> countries_continent_largest_to_smallest()
+    public ArrayList<Country> countries_continent_largest_to_smallest()
     {
         ArrayList<Country> countries = new ArrayList<>();
         try {
@@ -206,7 +206,7 @@ public class App {
         }
         return countries;
     }
-    private void displayCountries_continent_largest_to_smallest(ArrayList<Country> countries)
+    public void displayCountries_continent_largest_to_smallest(ArrayList<Country> countries)
     {
         System.out.print("***********************countries in a continent organised by largest population to smallest***********************\n");
         System.out.println(String.format("%-30s %-25s %-25s %-20s","Name","Region","Population","Capital"));
@@ -219,7 +219,7 @@ public class App {
     }
 
     //retrieving countries's population within a region
-    private ArrayList<Country> countries_region_largest_to_smallest()
+    public ArrayList<Country> countries_region_largest_to_smallest()
     {
         ArrayList<Country> Countries = new ArrayList<>();
         try {
@@ -255,12 +255,14 @@ public class App {
         }
         return Countries;
     }
-    private void displayCountries_region_largest_to_smallest(ArrayList<Country> Countries)
+    public void displayCountries_region_largest_to_smallest(ArrayList<Country> Countries)
     {
         System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
         System.out.println(String.format("%-30s %-25s %-25s %-20s","Name","Continent","Population","Capital"));
         for(Country c:Countries)
         {
+            if (c == null)
+                continue;
             System.out.println(String.format("%-30s %-25s %-25s %-20s",c.getName(),c.getContinent(),c.getPopulation(),c.getCapital()));
         }
         System.out.print("******************************************************************************************************************\n");

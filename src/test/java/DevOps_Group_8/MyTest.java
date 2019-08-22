@@ -20,12 +20,13 @@ class AppTest
     {
         app = new App();
     }
-
+    //testing for display_cities function
     @Test
     void printCityTestNull()
     {
         app.displayCity(null);
     }
+    //testing for null value contain in cities record
     @Test
     void printCitiesTestContainsNull()
     {
@@ -33,4 +34,16 @@ class AppTest
         cities.add(null);
         app.displayCity(cities);
     }
+
+    //null value testing for displaying countries in a region
+    @Test
+    void countries_region_largest_to_smallestTESTNull (){
+        ArrayList<Country> countries= new ArrayList<Country>();
+        countries.add(null);
+        app.displayCountries_region_largest_to_smallest(countries);
+    }
+
+    //null value testing for
+
 }
+
