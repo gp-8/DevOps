@@ -7,6 +7,7 @@ import java.util.ArrayList;
 /**
  * 
  */
+
 public class App {
     public static void main(String[] args)
     {
@@ -138,12 +139,12 @@ public class App {
 //             Check one is returned
                 while (rset.next()) {
                     Country   country = new Country();
-                    country.Code = rset.getString("Code");
-                    country.Name = rset.getString("Name");
-                    country.Continent = rset.getString("Continent");
-                    country.Region = rset.getString("Region");
-                    country.Population = rset.getInt("Population");
-                    country.Capital = rset.getInt("Capital");
+                    country.setCode(rset.getString("Code"));
+                    country.setName(rset.getString("Name"));
+                    country.setName(rset.getString("Continent"));
+                    country.setRegion(rset.getString("Region"));
+                    country.setPopulation(rset.getInt("Population"));
+                    country.setCapital(rset.getInt("Capital"));
                     cous.add(country);
                 }
             }
@@ -162,7 +163,7 @@ public class App {
         System.out.println(String.format("%-30s %-25s %-25s %-20s %-25s %-25s","Code","Name","Continent","Region","Population","Capital"));
         for(Country co:cous)
         {
-            System.out.println(String.format("%-30s %-25s %-25s %-20s %-25s %-25s",co.Code,co.Name,co.Continent,co.Region,co.Population,co.Capital));
+            System.out.println(String.format("%-30s %-25s %-25s %-20s %-25s %-25s",co.getCode(),co.getName(),co.getContinent(),co.getRegion(),co.getPopulation(),co.getCapital()));
 
         }
         System.out.print("******************************************************************************************************************\n");
@@ -189,10 +190,10 @@ public class App {
 //             Check one is returned
                 while (rset.next()) {
                  Country country = new Country();
-                    country.Name = rset.getString("Name");
-                    country.Region = rset.getString("Region");
-                    country.Population = rset.getInt("Population");
-                    country.Capital = rset.getInt("Capital");
+                    country.setName(rset.getString("Name"));
+                    country.setRegion(rset.getString("Region"));
+                    country.setPopulation(rset.getInt("Population"));
+                    country.setCapital(rset.getInt("Capital"));
                     countries.add(country);
                 }
             }
@@ -210,7 +211,7 @@ public class App {
         System.out.println(String.format("%-30s %-25s %-25s %-20s","Name","Region","Population","Capital"));
       for(Country c:countries)
       {
-          System.out.println(String.format("%-30s %-25s %-25s %-20s",c.Name,c.Region,c.Population,c.Capital));
+          System.out.println(String.format("%-30s %-25s %-25s %-20s",c.getName(),c.getRegion(),c.getPopulation(),c.getCapital()));
 
       }
         System.out.print("******************************************************************************************************************\n");
@@ -238,10 +239,10 @@ public class App {
 //             Check one is returned
                 while (rset.next()) {
                     Country country = new Country();
-                    country.Name = rset.getString("Name");
-                    country.Continent = rset.getString("Continent");
-                    country.Population = rset.getInt("Population");
-                    country.Capital = rset.getInt("Capital");
+                    country.setName(rset.getString("Name"));
+                    country.setContinent(rset.getString("Continent"));
+                    country.setPopulation(rset.getInt("Population"));
+                    country.setCapital(rset.getInt("Capital"));
                     Countries.add(country);
                 }
             }
@@ -259,12 +260,12 @@ public class App {
         System.out.println(String.format("%-30s %-25s %-25s %-20s","Name","Continent","Population","Capital"));
         for(Country c:Countries)
         {
-            System.out.println(String.format("%-30s %-25s %-25s %-20s",c.Name,c.Continent,c.Population,c.Capital));
+            System.out.println(String.format("%-30s %-25s %-25s %-20s",c.getName(),c.getContinent(),c.getPopulation(),c.getCapital()));
         }
         System.out.print("******************************************************************************************************************\n");
     }
     //retrieving population of the cities in the world largest to smallest
-    private ArrayList<City> getCity()
+    public ArrayList<City> getCity()
     {
         ArrayList<City> cities = new ArrayList<>();
         try {
@@ -284,10 +285,10 @@ public class App {
 //             Check one is returned
                 while (rset.next()) {
                     City   city = new City();
-                    city.Name = rset.getString("Name");
-                    city.CountryCode = rset.getString("CountryCode");
-                    city.District = rset.getString("District");
-                    city.Population = rset.getInt("Population");
+                    city.setName(rset.getString("Name"));
+                    city.setCountry_code(rset.getString("CountryCode"));
+                    city.setDistrict(rset.getString("District"));
+                    city.setPopulation(rset.getInt("Population"));
                     cities.add(city);
                 }
             }
@@ -299,18 +300,18 @@ public class App {
         }
         return cities;
     }
-    private void displayCity(ArrayList<City> cities)
+    public void displayCity(ArrayList<City> cities)
     {
         System.out.print("***********************cities in the world organised by largest population to smallest***********************\n");
         System.out.println(String.format("%-30s %-25s %-25s %-20s","Name","Code","District","Population"));
         for(City c:cities)
         {
-            System.out.println(String.format("%-30s %-25s %-25s %-20s",c.CountryCode,c.District,c.Name,c.Population));
+            System.out.println(String.format("%-30s %-25s %-25s %-20s",c.getName(),c.getCountry_code(),c.getDistrict(),c.getPopulation()));
         }
         System.out.print("******************************************************************************************************************\n");
     }
     //retrieving cities's population within a continent
-    private void getCity_continent() {
+    public void getCity_continent() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -343,7 +344,7 @@ public class App {
         }
     }
     //getting cities' population within region
-    private void getCity_Region()
+    public void getCity_Region()
     {
         try {
             // Create an SQL statement
@@ -378,7 +379,7 @@ public class App {
         }
     }
     //retrieving cities' population for a country
-    private void getCitybyCountry() {
+    public void getCitybyCountry() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -410,7 +411,7 @@ public class App {
         }
     }
     //retrieving cities' population for a district
-    private void getCitybyDistrict() {
+    public void getCitybyDistrict() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -442,7 +443,7 @@ public class App {
         }
     }
     //getting capital cities in the world
-    private void getCapitalCities() {
+    public void getCapitalCities() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -474,7 +475,7 @@ public class App {
         }
     }
     //retrieving capital's population for a continent
-    private void getCapitalCitiesbyContinent() {
+    public void getCapitalCitiesbyContinent() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -505,7 +506,7 @@ public class App {
         }
     }
     //retrieving captial's population within a region
-    private void getCapitalCitiesbyRegion() {
+    public void getCapitalCitiesbyRegion() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
