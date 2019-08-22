@@ -140,8 +140,8 @@ public class App {
                 while (rset.next()) {
                     Country   country = new Country();
                     country.setCode(rset.getString("Code"));
-                    country.setName(rset.getString("Name"));
-                    country.setName(rset.getString("Continent"));
+                   country.setName(rset.getString("Name"));
+                    country.setContinent(rset.getString("Continent"));
                     country.setRegion(rset.getString("Region"));
                     country.setPopulation(rset.getInt("Population"));
                     country.setCapital(rset.getInt("Capital"));
@@ -163,6 +163,7 @@ public class App {
         System.out.println(String.format("%-30s %-25s %-25s %-20s %-25s %-25s","Code","Name","Continent","Region","Population","Capital"));
         for(Country co:cous)
         {
+
             System.out.println(String.format("%-30s %-25s %-25s %-20s %-25s %-25s",co.getCode(),co.getName(),co.getContinent(),co.getRegion(),co.getPopulation(),co.getCapital()));
 
         }
@@ -302,11 +303,19 @@ public class App {
     }
     public void displayCity(ArrayList<City> cities)
     {
+        //error control for null city values with unique testing
+        if (cities==null)
+        {
+            System.out.println("No data record for cities");
+            return;
+        }
         System.out.print("***********************cities in the world organised by largest population to smallest***********************\n");
         System.out.println(String.format("%-30s %-25s %-25s %-20s","Name","Code","District","Population"));
         for(City c:cities)
         {
-            System.out.println(String.format("%-30s %-25s %-25s %-20s",c.getName(),c.getCountry_code(),c.getDistrict(),c.getPopulation()));
+            if(c==null)
+                continue;
+                System.out.println(String.format("%-30s %-25s %-25s %-20s",c.getName(),c.getCountry_code(),c.getDistrict(),c.getPopulation()));
         }
         System.out.print("******************************************************************************************************************\n");
     }
