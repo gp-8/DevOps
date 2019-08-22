@@ -375,7 +375,8 @@ public class App {
         System.out.println(String.format("%-30s %-25s %-25s %-20s %-25s %-25s","Code","Name","Continent","Region","Population","Capital"));
         for(City ct:cties)
         {
-
+            if(ct==null)
+                continue;
             System.out.println(String.format("%-30s %-25s %-25s %-20s %-25s",ct.getCountry().getContinent(),ct.getCountry().getName(),ct.getCountry().getCode(),ct.getName(),ct.getPopulation()));
 
         }

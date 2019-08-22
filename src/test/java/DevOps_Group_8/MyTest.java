@@ -43,7 +43,13 @@ class AppTest
         app.displayCountries_region_largest_to_smallest(countries);
     }
 
-    //null value testing for
+    //null value testing for displaying cities in a continent
+    @Test
+    void displayCityContinentTESTNull(){
+        ArrayList<City> cities = new ArrayList<City>();
+        cities.add(null);
+        app.displayCityContinent(cities);
+    }
 
 }
 
