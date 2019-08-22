@@ -2,6 +2,26 @@ package DevOps_Group_8;
 
 public class City {
     private String name;
+    private String countrycode;
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "name='" + name + '\'' +
+                ", countrycode='" + countrycode + '\'' +
+                ", district='" + district + '\'' +
+                ", population=" + population +
+                ", country=" + country +
+                '}';
+    }
+
+    public String getCountrycode() {
+        return countrycode;
+    }
+
+    public void setCountrycode(String countrycode) {
+        this.countrycode = countrycode;
+    }
 
     private String district;
     private int population;
@@ -39,6 +59,5 @@ public class City {
     public void setPopulation(int population) {
         this.population = population;
     }
-
 
 }
