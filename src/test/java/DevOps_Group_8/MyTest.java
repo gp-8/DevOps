@@ -27,6 +27,12 @@ class AppTest
     {
         app.displayCity(null);
     }
+    @Test
+    void getcityTESTNull()
+    {
+        app.getCity();
+    }
+
     //testing for null value contain in cities record
     @Test
     void printCitiesTestContainsNull()
@@ -36,6 +42,7 @@ class AppTest
         app.displayCity(cities);
     }
 
+
     //null value testing for displaying countries in a region
     @Test
     void countries_region_largest_to_smallestTESTNull (){
@@ -43,7 +50,10 @@ class AppTest
         countries.add(null);
         app.displayCountries_region_largest_to_smallest(countries);
     }
-
+    @Test
+    void getcountries_region_largest_to_smallest(){
+        app.countries_region_largest_to_smallest();
+    }
     //null value testing for displaying cities in a continent
     @Test
     void displayCityContinentTESTNull(){
@@ -51,47 +61,71 @@ class AppTest
         cities.add(null);
         app.displayCityContinent(cities);
     }
-
+    @Test
+    void getcitycontinentTESTNull(){
+        app.getCity_continent();
+    }
     @Test
     void displayCityRegionTESTNull(){
         ArrayList<City> cities =new ArrayList<>();
         cities.add(null);
         app.displayCityRegion(cities);
     }
+    @Test
+    void getcityregion(){
+        app.getCity_Region();
+    }
 
     @Test
-    void getCitybyCountryTESTNull(){
+    void displayCitybyCountryTESTNull(){
         ArrayList<City> cities =new ArrayList<>();
         cities.add(null);
         app.displayCityCountry(cities);
     }
+    @Test
+    void getcitybycountry(){
+        app.getCitybyCountry();
+    }
 
     @Test
-    void getCitybyDistrictTESTNull(){
+    void displayCitybyDistrictTESTNull(){
         ArrayList<City> cities=new ArrayList<>();
         cities.add(null);
         app.displayCityDistrict(cities);
     }
-
+    @Test
+    void getcitybydistrict(){
+        app.getCitybyDistrict();
+    }
     @Test
     void getCapitalCitiesTESTNull(){
         ArrayList<City> cities=new ArrayList<>();
         cities.add(null);
         app.displayCapitalCities(cities);
     }
-
+    @Test
+    void getcapitalcities(){
+        app.getCapitalCities();
+    }
     @Test
     void getCapitalCitiesbyContinentTESTNull(){
         ArrayList<City> cities=new ArrayList<>();
         cities.add(null);
         app.displayCapitalCitiesbyContinent(cities);
     }
-
     @Test
-    void getCapitalCitiesbyRegionTESTNull(){
+    void getcapitalcitiesbycontinent(){
+        app.getCapitalCitiesbyContinent();
+    }
+    @Test
+    void displayCapitalCitiesbyRegionTESTNull(){
         ArrayList<City> cities=new ArrayList<>();
         cities.add(null);
         app.displayCapitalCitiesbyRegion(cities);
+    }
+    @Test
+    void getcaptialcitiesbyregion(){
+        app.getCapitalCitiesbyRegion();
     }
 }
 
