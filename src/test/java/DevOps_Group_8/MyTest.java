@@ -93,12 +93,5 @@ class AppTest
         cities.add(null);
         app.displayCapitalCitiesbyRegion(cities);
     }
-
-
-
-
-
-
-
 }
 

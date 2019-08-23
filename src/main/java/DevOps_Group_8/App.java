@@ -279,6 +279,12 @@ public class App {
 
     public void displayCountries_region_largest_to_smallest(ArrayList<Country> Countries)
     {
+        // Check countries is not null
+        if (Countries == null)
+        {
+            System.out.println("No data record for countries");
+            return;
+        }
         System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
         System.out.printf("%25s%25s%25s%25s","Name","Continent","Population","Capital\n");
         for(Country c:Countries)
@@ -396,10 +402,15 @@ public class App {
 
     public void displayCityContinent(ArrayList<City> cties2)
     {
+        if(cties2==null){
+            System.out.println("no data record for cities");
+        }
         System.out.print("***********************cities in a continent organised by largest population to smallest***********************\n");
         System.out.printf("%25s%25s%25s%25s%25s","Continent","Name","CountryCode","CityName","Population\n");
         for(City ct:cties2)
         {
+            if(ct==null)
+                continue;
 
             System.out.printf("%25s%25s%25s%25s%25s",ct.getCountry().getContinent(),ct.getCountry().getName(),ct.getCountry().getCode(),ct.getName(),ct.getPopulation());
             System.out.print("\n");
