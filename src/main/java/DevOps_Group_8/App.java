@@ -905,6 +905,8 @@ public class App {
         System.out.printf("%20s%20s%30s%20s", "Name","Continent","Region","Population\n");
         for(Country ct:countries1)
         {
+            if (ct==null)
+                continue;
             System.out.printf("%20s%20s%30s%20s",ct.getName(),ct.getContinent(),ct.getRegion(),ct.getPopulation());
             System.out.println("\n");
         }
@@ -967,6 +969,8 @@ public class App {
         System.out.printf("%20s%20s%30s%20s", "Name","Continent","Region","Population\n");
         for(Country ct:countries2)
         {
+            if (ct==null)
+                continue;
             System.out.printf("%20s%20s%30s%20s",ct.getName(),ct.getContinent(),ct.getRegion(),ct.getPopulation());
             System.out.println("\n");
         }
@@ -1029,6 +1033,8 @@ public class App {
         System.out.printf("%20s%20s%30s%20s", "Name","Continent","Region","Population\n");
         for(Country ct:countries3)
         {
+            if(ct==null)
+                continue;
             System.out.printf("%20s%20s%30s%20s",ct.getName(),ct.getContinent(),ct.getRegion(),ct.getPopulation());
             System.out.println("\n");
         }
@@ -1090,6 +1096,8 @@ public class App {
         System.out.printf("%20s%20s%30s%20s", "Name","CountryCode","District","Population\n");
         for(City ct:cities9)
         {
+            if (ct==null)
+                continue;
             System.out.printf("%20s%20s%30s%20s",ct.getName(),ct.getCountrycode(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
@@ -1156,6 +1164,8 @@ public class App {
         System.out.printf("%20s%20s%30s%20s%20s", "Continent","CountryName","CountryCode","CityName","Population\n");
         for(City ct:cities10)
         {
+            if(ct==null)
+                continue;
             System.out.printf("%20s%20s%30s%20s%20s",ct.getCountry().getContinent(),ct.getCountry().getName(),ct.getCountrycode(),ct.getName(),ct.getPopulation());
             System.out.println("\n");
         }
@@ -1221,6 +1231,8 @@ public class App {
         System.out.printf("%20s%20s%30s%20s", "Name","District", "Population" ,"Region\n");
         for(City ct:cities11)
         {
+            if (ct==null)
+                continue;
             System.out.printf("%20s%20s%30s%20s",ct.getName(),ct.getDistrict(), ct.getPopulation() ,ct.getCountry().getRegion());
             System.out.println("\n");
         }
@@ -1286,6 +1298,8 @@ public class App {
         System.out.printf("%20s%20s%30s%20s", "CountryName","CityName", "District" ,"Population\n");
         for(City ct:cities12)
         {
+            if(ct==null)
+                continue;
             System.out.printf("%20s%20s%30s%20s",ct.getCountry().getName(),ct.getName(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
@@ -1347,6 +1361,8 @@ public class App {
         System.out.printf("%20s%20s%30s%20s", "CityName","CountryCode", "District" ,"Population\n");
         for(City ct:cities13)
         {
+            if (ct==null)
+                continue;
             System.out.printf("%20s%20s%30s%20s",ct.getName(),ct.getCountrycode(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }

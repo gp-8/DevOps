@@ -2,15 +2,10 @@
 
 package DevOps_Group_8;
 
-import DevOps_Group_8.App;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
 import java.util.ArrayList;
-import java.util.jar.Attributes;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest
 {
@@ -127,5 +122,73 @@ class AppTest
     void getcaptialcitiesbyregion(){
         app.getCapitalCitiesbyRegion();
     }
+
+
+
+
+    @Test
+    void displayTopcountriesbyworldTESTNull(){
+        ArrayList<Country> countries = new ArrayList<>();
+        countries.add(null);
+        app.displayTopCountriesbyWorld(countries);
+    }
+
+
+    @Test
+    void displayTopCountriesbyContinentNullTest(){
+        ArrayList<Country> countries = new ArrayList<>();
+        countries.add(null);
+        app.displayTopCountriesbyContinent(countries);
+    }
+
+
+    @Test
+    void displaytopcountriesregion(){
+        ArrayList<Country> countries =new ArrayList<>();
+        countries.add(null);
+        app.displayTopCountriesbyContinent(countries);
+    }
+
+
+    @Test
+    void displayTopCitiesWorld(){
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(null);
+        app.displayTopCitiesWorld(cities);
+    }
+
+
+    @Test
+    void displayTopCitiesContinent(){
+        ArrayList<City> cities= new ArrayList<>();
+        cities.add(null);
+        app.displayTopCitiesContinent(cities);
+    }
+
+
+
+    @Test
+    void displayTopCitiesRegion(){
+        ArrayList<City> cities=new ArrayList<>();
+        cities.add(null);
+        app.displayTopCitiesRegion(cities);
+    }
+
+    @Test
+    void displayTopCitiesCountry(){
+        ArrayList<City> cities=new ArrayList<>();
+        cities.add(null);
+        app.displayTopCitiesCountry(cities);
+    }
+
+
+    @Test
+    void displayTopCitiesDistrict(){
+        ArrayList<City> cities= new ArrayList<>();
+        cities.add(null);
+        app.displayTopCitiesDistrict(cities);
+    }
+
+
 }
 
