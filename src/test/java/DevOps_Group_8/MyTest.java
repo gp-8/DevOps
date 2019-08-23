@@ -190,6 +190,40 @@ class AppTest
         app.displayTopCitiesDistrict(cities);
     }
 
+    @Test
+    void getcityTestNull(){
+        app.getCity();
+    }
+
+    @Test
+    void testingcountry(){
+        Country country = new Country();
+        country.setName("Test");
+        country.setContinent("Test");
+        country.setPopulation(10000);
+        country.setCapital (100);
+        country.getName();
+        country.getContinent();
+        country.getRegion();
+        country.getPopulation();
+        country.getCapital();
+        country.getCode();
+    }
+    @Test
+    void testingcity(){
+        City   city = new City();
+        city.setName("Test");
+        city.setCountrycode("TET");
+        city.setDistrict("Test");
+        city.setPopulation(1000);
+        city.getCountry();
+        city.getName();
+        city.getPopulation();
+        city.getDistrict();
+        city.getCountrycode();
+    }
+
+
 
 }
 
