@@ -60,12 +60,13 @@ class AppTest
     void getcitycontinentTESTNull(){
         app.getCity_continent();
     }
-    @Test
-    void displayCityRegionTESTNull(){
-        ArrayList<City> cities =new ArrayList<>();
-        cities.add(null);
-        app.displayCityRegion(cities);
-    }
+
+//    @Test
+//    void displayCityRegionTESTNull(){
+//        ArrayList<City> cities =new ArrayList<>();
+//        cities.add(null);
+//        app.displayCityRegion(cities);
+//    }
     @Test
     void getcityregion(){
         app.getCity_Region();
