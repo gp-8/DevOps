@@ -19,6 +19,7 @@ public class AppIntegrationTest
         app.connect("localhost:33060");
     }
 
+    //testing for display_cities function
     @Test
     void printCityTestNull()
     {
@@ -54,5 +55,40 @@ public class AppIntegrationTest
         ArrayList<City> cities =new ArrayList<>();
         cities.add(null);
         app.displayCityRegion(cities);
+    }
+
+    @Test
+    void getCitybyCountryTESTNull(){
+        ArrayList<City> cities =new ArrayList<>();
+        cities.add(null);
+        app.displayCityCountry(cities);
+    }
+
+    @Test
+    void getCitybyDistrictTESTNull(){
+        ArrayList<City> cities=new ArrayList<>();
+        cities.add(null);
+        app.displayCityDistrict(cities);
+    }
+
+    @Test
+    void getCapitalCitiesTESTNull(){
+        ArrayList<City> cities=new ArrayList<>();
+        cities.add(null);
+        app.displayCapitalCities(cities);
+    }
+
+    @Test
+    void getCapitalCitiesbyContinentTESTNull(){
+        ArrayList<City> cities=new ArrayList<>();
+        cities.add(null);
+        app.displayCapitalCitiesbyContinent(cities);
+    }
+
+    @Test
+    void getCapitalCitiesbyRegionTESTNull(){
+        ArrayList<City> cities=new ArrayList<>();
+        cities.add(null);
+        app.displayCapitalCitiesbyRegion(cities);
     }
 }
