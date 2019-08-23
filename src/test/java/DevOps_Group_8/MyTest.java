@@ -87,6 +87,13 @@ class AppTest
         app.displayCapitalCitiesbyContinent(cities);
     }
 
+    @Test
+    void getCapitalCitiesbyRegionTESTNull(){
+        ArrayList<City> cities=new ArrayList<>();
+        cities.add(null);
+        app.displayCapitalCitiesbyRegion(cities);
+    }
+
 
 
 
