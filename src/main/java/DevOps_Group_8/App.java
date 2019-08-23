@@ -24,6 +24,8 @@ public class App {
             a.connect(args[0]);
         }
 
+        City c2 = a.getCity(2710);
+        System.out.println(c2);
         //All the countries in the world organised by largest population to smallest.
         ArrayList<Country> cous = a.getCountry();
         a.displayCountry(cous);
@@ -71,6 +73,8 @@ public class App {
         // Disconnect from database
         a.disconnect();
     }
+
+
     /**
      * Connection to MySQL database.
      */
@@ -482,11 +486,51 @@ public class App {
         for(City ct:cties3)
         {
             if (ct==null)
-                continue;
             System.out.printf("%25s%25s%25s%25s",ct.getName(),ct.getDistrict(),ct.getPopulation(),ct.getCountry().getRegion());
             System.out.print("\n");
         }
         System.out.print("******************************************************************************************************************\n");
+    }
+    public City getCity(int id){
+        City city=null;
+        try {
+
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.District, city.Population "
+                            + "FROM city "
+                            + "WHERE city.ID = "+ id +" "
+                            + "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            if (rset == null)
+            {
+                System.out.println("Not Found");
+            }
+            else
+            {
+//             Return new city if valid.
+//             Check one is returned
+
+                while (rset.next()){
+                    city=new City();
+                city.setId(rset.getInt(1));
+                city.setName(rset.getString(2));
+                city.setDistrict(rset.getString(3));
+                city.setPopulation(rset.getInt(4));
+                }
+
+            }
+
+        }
+             catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+                System.out.println("Failed to get One City!");
+            }
+        return city;
+
     }
 
 

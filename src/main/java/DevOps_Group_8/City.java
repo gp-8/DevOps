@@ -1,19 +1,29 @@
 package DevOps_Group_8;
 
 public class City {
-    private String name;
-    private String countrycode;
-
     @Override
     public String toString() {
         return "City{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", countrycode='" + countrycode + '\'' +
                 ", district='" + district + '\'' +
                 ", population=" + population +
                 ", country=" + country +
                 '}';
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
+    private String name;
+    private String countrycode;
 
     public String getCountrycode() {
         return countrycode;
