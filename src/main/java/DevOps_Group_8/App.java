@@ -81,17 +81,25 @@ public class App {
         ArrayList<Country> countries3 = a.gettopCountryRegion();
         a.displayTopCountriesbyRegion(countries3);
 
+        //Top N populated cities in the world where N is provided by the user.
         ArrayList<City> cities9 = a.gettopCityWorld();
         a.displayTopCitiesWorld(cities9);
 
+        //Top N populated cities in a continent where N is provided by the user.
         ArrayList<City> cities10 = a.gettopCityContinent();
         a.displayTopCitiesContinent(cities10);
 
+        //Top N populated cities in a region where N is provided by the user.
         ArrayList<City> cities11 = a.gettopCityRegion();
         a.displayTopCitiesRegion(cities11);
 
+        //Top N populated cities in a country where N is provided by the user.
         ArrayList<City> cities12 = a.gettopCityCountry();
         a.displayTopCitiesCountry(cities12);
+
+        //Top N populated cities in a district where N is provided by the user.
+        ArrayList<City> cities13 = a.gettopCityDistrict();
+        a.displayTopCitiesDistrict(cities13);
 
         // Disconnect from database
         a.disconnect();
@@ -1279,6 +1287,67 @@ public class App {
         for(City ct:cities12)
         {
             System.out.printf("%20s%20s%30s%20s",ct.getCountry().getName(),ct.getName(),ct.getDistrict(),ct.getPopulation());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<City> gettopCityDistrict()
+    {
+        ArrayList<City> cities = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a number to print Top Populated Cities in California : ");
+            String user_input = scanner.next(); // get string
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, city.CountryCode, District, city.Population "
+                            + "FROM city "
+                            + "WHERE District = 'California'"
+                            + "ORDER BY city.Population DESC "
+                            + "Limit " + user_input;
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null)
+            {
+                System.out.println("Not Found");
+            }
+
+            else
+            {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next())
+                {
+                    City ci = new City();
+                    ci.setName(rset.getString(1));
+                    ci.setCountrycode(rset.getString(2));
+                    ci.setDistrict(rset.getString(3));
+                    ci.setPopulation(rset.getInt(4));
+                }
+            }
+
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Top cities in California details");
+        }
+        return cities;
+    }
+
+    public void displayTopCitiesDistrict(ArrayList<City> cities13)
+    {
+        // Check cities data is not null
+        System.out.print("***********************Top Populated Cities in California organised by largest population to smallest***********************\n");
+        System.out.printf("%20s%20s%30s%20s", "CityName","CountryCode", "District" ,"Population\n");
+        for(City ct:cities13)
+        {
+            System.out.printf("%20s%20s%30s%20s",ct.getName(),ct.getCountrycode(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
         System.out.print("******************************************************************************************************************\n");
