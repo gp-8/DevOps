@@ -16,7 +16,14 @@ public class App {
         App a = new App();
 
         // Connect to database
-        a.connect("localhost:33060");
+        if (args.length < 1)
+        {
+            a.connect("localhost:3306");
+        }
+        else
+        {
+            a.connect(args[0]);
+        }
 
         //All the countries in the world organised by largest population to smallest.
         ArrayList<Country> cous = a.getCountry();
@@ -304,6 +311,12 @@ public class App {
 
     public void displayCountries_region_largest_to_smallest(ArrayList<Country> Countries)
     {
+        // Check countries is not null
+        if (Countries == null)
+        {
+            System.out.println("No data record for countries");
+            return;
+        }
         System.out.print("***********************countries in a region organised by largest population to smallest***********************\n");
         System.out.printf("%25s%25s%25s%25s","Name","Continent","Population","Capital\n");
         for(Country c:Countries)
@@ -421,10 +434,15 @@ public class App {
 
     public void displayCityContinent(ArrayList<City> cties2)
     {
+        if(cties2==null){
+            System.out.println("no data record for cities");
+        }
         System.out.print("***********************cities in a continent organised by largest population to smallest***********************\n");
         System.out.printf("%25s%25s%25s%25s%25s","Continent","Name","CountryCode","CityName","Population\n");
         for(City ct:cties2)
         {
+            if(ct==null)
+                continue;
 
             System.out.printf("%25s%25s%25s%25s%25s",ct.getCountry().getContinent(),ct.getCountry().getName(),ct.getCountry().getCode(),ct.getName(),ct.getPopulation());
             System.out.print("\n");
