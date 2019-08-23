@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.util.ArrayList;
+import java.util.jar.Attributes;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -50,6 +51,47 @@ class AppTest
         cities.add(null);
         app.displayCityContinent(cities);
     }
+
+    @Test
+    void displayCityRegionTESTNull(){
+        ArrayList<City> cities =new ArrayList<>();
+        cities.add(null);
+        app.displayCityRegion(cities);
+    }
+
+    @Test
+    void getCitybyCountryTESTNull(){
+        ArrayList<City> cities =new ArrayList<>();
+        cities.add(null);
+        app.displayCityCountry(cities);
+    }
+
+    @Test
+    void getCitybyDistrictTESTNull(){
+        ArrayList<City> cities=new ArrayList<>();
+        cities.add(null);
+        app.displayCityDistrict(cities);
+    }
+
+    @Test
+    void getCapitalCitiesTESTNull(){
+        ArrayList<City> cities=new ArrayList<>();
+        cities.add(null);
+        app.displayCapitalCities(cities);
+    }
+
+    @Test
+    void getCapitalCitiesbyContinentTESTNull(){
+        ArrayList<City> cities=new ArrayList<>();
+        cities.add(null);
+        app.displayCapitalCitiesbyContinent(cities);
+    }
+
+
+
+
+
+
 
 }
 

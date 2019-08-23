@@ -455,10 +455,16 @@ public class App {
 
     public void displayCityRegion(ArrayList<City> cties3)
     {
+        //check cities_data is not null
+        if (cties3==null){
+            System.out.println("No data record for cities in region");
+        }
         System.out.print("***********************cities in a region organised by largest population to smallest***********************\n");
         System.out.printf("%25s%25s%25s%25s","Name","District","Population","Region\n");
         for(City ct:cties3)
         {
+            if (ct==null)
+                continue;
             System.out.printf("%25s%25s%25s%25s",ct.getName(),ct.getDistrict(),ct.getPopulation(),ct.getCountry().getRegion());
             System.out.print("\n");
         }
@@ -512,10 +518,17 @@ public class App {
     }
     public void displayCityCountry(ArrayList<City> cties4)
     {
+        if (cties4 == null)
+        {
+            System.out.println("No data record for city in a country");
+            return;
+        }
         System.out.print("***********************Cities in a country organised by largest population to smallest***********************\n");
         System.out.printf("%20s%20s%20s%20s", "Name","CityName","District","Population\n");
         for(City ct:cties4)
         {
+            if (ct == null)
+                continue;
             System.out.printf("%20s%20s%20s%20s", ct.getCountry().getName(),ct.getName(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
@@ -564,10 +577,17 @@ public class App {
 
     public void displayCityDistrict(ArrayList<City> cties5)
     {
+        if (cties5 == null)
+        {
+            System.out.println("No data record for city in a district");
+            return;
+        }
         System.out.print("***********************cities in a district organised by largest population to smallest***********************\n");
         System.out.printf("%20s%20s%20s%20s","Name","CountryCode","District","Population\n");
         for(City ct:cties5)
         {
+            if (ct == null)
+                continue;
             System.out.printf("%20s%20s%20s%20s",ct.getName(),ct.getCountry(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
@@ -623,10 +643,18 @@ public class App {
 
     public void displayCapitalCities(ArrayList<City> cties6)
     {
+        // Check captial city is not null
+        if (cties6 == null)
+        {
+            System.out.println("No data record for capital_cities");
+            return;
+        }
         System.out.print("***********************Capital Cities in the World organised by largest population to smallest***********************\n");
         System.out.printf("%20s%20s%20s%20s%20s","Name","CountryName","Continent","District","Population\n");
         for(City ct:cties6)
         {
+            if (ct==null)
+                continue;
             System.out.printf("%20s%20s%20s%20s", ct.getName(),ct.getCountry().getName(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
