@@ -18,7 +18,7 @@ public class App {
         // Connect to database
         if (args.length < 1)
         {
-            a.connect("localhost:3306");
+            a.connect("localhost:33060");
         }
         else
         {
@@ -102,6 +102,19 @@ public class App {
         //Top N populated cities in a district where N is provided by the user.
         ArrayList<City> cities13 = a.gettopCityDistrict();
         a.displayTopCitiesDistrict(cities13);
+
+        //Top N populated capital cities in the world where N is provided by the user.
+        ArrayList<City> cities14 = a.gettopCapitalCityWorld();
+        a.displayTopCapitalCityWorld(cities14);
+
+        //Top N populated capital cities in a continent where N is provided by the user.
+        ArrayList<City> cities15 = a.gettopCapitalCityContinent();
+        a.displayTopCapitalCityContinent(cities15);
+
+        //Top N populated capital cities in a region where N is provided by the user.
+        ArrayList<City> cities16 = a.gettopCapitalCityRegion();
+        a.displayTopCapitalCityRegion(cities16);
+
 
         // Disconnect from database
         a.disconnect();
@@ -1408,6 +1421,212 @@ public class App {
             if (ct==null)
                 continue;
             System.out.printf("%20s%20s%30s%20s",ct.getName(),ct.getCountrycode(),ct.getDistrict(),ct.getPopulation());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<City> gettopCapitalCityWorld()
+    {
+        ArrayList<City> cities = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a number to print Top Populated Capital City in the World : ");
+            String user_input = scanner.next(); // get string
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, country.Continent, city.District , city.Population "
+                            + "FROM city, country "
+                            + "WHERE city.ID = country.Capital "
+                            + "ORDER BY city.Population DESC "
+                            + "Limit " + user_input;
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null)
+            {
+                System.out.println("Not Found");
+            }
+
+            else
+            {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next())
+                {
+                    Country c =new Country();
+                    c.setName(rset.getString(2));
+                    c.setContinent(rset.getString(3));
+
+                    City ci = new City();
+                    ci.setCountry(c);
+                    ci.setName(rset.getString(1));
+                    ci.setDistrict(rset.getString(4));
+                    ci.setPopulation(rset.getInt(5));
+                    cities.add(ci);
+                }
+            }
+
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Top Capital City in the World details");
+        }
+        return cities;
+    }
+
+    public void displayTopCapitalCityWorld(ArrayList<City> cities14)
+    {
+        // Check cities data is not null
+        System.out.print("***********************Top Populated Capital City in the World organised by largest population to smallest***********************\n");
+        System.out.printf("%20s%20s%20s%20s%20s","Name","CountryName","Continent","District","Population\n");
+        for(City ct:cities14)
+        {
+            if (ct==null)
+                continue;
+            System.out.printf("%20s%20s%20s%20s", ct.getName(),ct.getCountry().getName(),ct.getDistrict(),ct.getPopulation());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<City> gettopCapitalCityContinent()
+    {
+        ArrayList<City> cities = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a number to print Top Populated Capital City in Asia: ");
+            String user_input = scanner.next(); // get string
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Capital, city.Name, country.Name, country.Continent, city.District, city.Population "
+                            + "FROM city, country "
+                            + "WHERE city.ID = country.Capital AND country.Continent = 'Asia'"
+                            + "ORDER BY city.Population DESC "
+                            + "Limit " + user_input;
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null)
+            {
+                System.out.println("Not Found");
+            }
+
+            else
+            {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next())
+                {
+                    Country c =new Country();
+                    c.setCapital(rset.getInt(1));
+                    c.setName(rset.getString(3));
+                    c.setContinent(rset.getString(4));
+
+                    City ci = new City();
+                    ci.setCountry(c);
+                    ci.setName(rset.getString(2));
+                    ci.setDistrict(rset.getString(5));
+                    ci.setPopulation(rset.getInt(6));
+                    cities.add(ci);
+                }
+            }
+
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Top Capital City in Asia details");
+        }
+        return cities;
+    }
+
+    public void displayTopCapitalCityContinent(ArrayList<City> cities15)
+    {
+        // Check cities data is not null
+        System.out.print("***********************Top Populated Capital City in Asia organised by largest population to smallest***********************\n");
+        System.out.printf("%20s%20s%20s%20s%20s%20s","Capital","Name","CountryName","Continent","District","Population\n");
+        for(City ct:cities15)
+        {
+            if(ct==null)
+                continue;
+            System.out.printf("%20s%20s%20s%20s%20s%20s",ct.getCountry().getCapital(),ct.getName(),ct.getCountry().getName(),ct.getCountry().getContinent(),ct.getDistrict(),ct.getPopulation());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<City> gettopCapitalCityRegion()
+    {
+        ArrayList<City> cities = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a number to print Top Populated Capital City in SouthEast Asia: ");
+            String user_input = scanner.next(); // get string
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Capital, city.Name, country.Name, country.Region, city.District, city.Population "
+                            + "FROM city, country "
+                            + "WHERE city.ID = country.Capital AND country.Region='Southeast Asia'"
+                            + "ORDER BY city.Population DESC "
+                            + "Limit " + user_input;
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null)
+            {
+                System.out.println("Not Found");
+            }
+
+            else
+            {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next())
+                {
+                    Country c =new Country();
+                    c.setCapital(rset.getInt(1));
+                    c.setName(rset.getString(3));
+                    c.setRegion(rset.getString(4));
+
+                    City ci = new City();
+                    ci.setCountry(c);
+                    ci.setName(rset.getString(2));
+                    ci.setDistrict(rset.getString(5));
+                    ci.setPopulation(rset.getInt(6));
+                    cities.add(ci);
+                }
+            }
+
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Top Capital City in SouthEast Asia details");
+        }
+        return cities;
+    }
+
+    public void displayTopCapitalCityRegion(ArrayList<City> cities16)
+    {
+        // Check cities data is not null
+        System.out.print("***********************Top Populated Capital City in SouthEast Asia organised by largest population to smallest***********************\n");
+        System.out.printf("%20s%20s%20s%20s%20s%20s", "Capital","Name","CountryName","Region","District","Population\n");
+        for(City ct:cities16)
+        {
+            if(ct==null)
+                continue;
+            System.out.printf("%20s%20s%20s%20s%20s%20s",ct.getCountry().getCapital(),ct.getName(),ct.getCountry().getName(),ct.getCountry().getRegion(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
         System.out.print("******************************************************************************************************************\n");
