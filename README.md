@@ -3,7 +3,7 @@
 - Develop Build Status [![Build Status](https://travis-ci.org/gp-8/DevOps.svg?branch=develop)](https://travis-ci.org/gp-8/DevOps)
 - License [![LICENSE](https://img.shields.io/github/license/gp-8/DevOps.svg?style=flat-square)](https://github.com/gp-8/DevOps/blob/master/LICENSE)
 - Release [![Releases](https://img.shields.io/github/release/gp-8/DevOps.svg?style=flat-square)](https://github.com/gp-8/DevOps/releases)
-
+- Code Coverage [![codecov](https://codecov.io/gh/gp-8/DevOps/branch/master/graph/badge.svg)](https://codecov.io/gh/gp-8/DevOps)
 ## Team Members & Roles
 | Name | Role |
 | --- | --- |
