@@ -223,5 +223,33 @@ class AppTest
         city.getCountrycode();
     }
 
+    @Test
+    void testprintCity()
+    {
+        City city = new City();
+        city.printCity();
+    }
+
+    @Test
+    void testprintCountry()
+    {
+        Country country = new Country();
+        country.printCountry();
+    }
+
+    @Test
+    void testprintLanguage()
+    {
+        Language language = new Language();
+        language.printLanguage();
+    }
+
+    @Test
+    void testprintPopulation()
+    {
+        Population population = new Population();
+        population.printPopulation();
+    }
+
 }
 

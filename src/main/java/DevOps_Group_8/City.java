@@ -70,4 +70,14 @@ public class City {
         this.population = population;
     }
 
+    public static String getCityFormat() {
+        return "%-30.25s  %-30.25s  %-30s  %-30s";
+    }
+
+    public static void printCity() {
+        System.out.println("\n");
+        System.out.printf(City.getCityFormat(), "NAME", "COUNTRY", "DISTRICT", "POPULATION");
+        System.out.println("\n");
+    }
+
 }

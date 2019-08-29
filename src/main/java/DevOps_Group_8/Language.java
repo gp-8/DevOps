@@ -47,4 +47,14 @@ public class Language {
     public void setPercentage(float percentage) {
         this.percentage = percentage;
     }
+
+    public static String getLanguageFormat() {
+        return "%-30.25s  %-30.25s  %-30s";
+    }
+
+    public static void printLanguage() {
+        System.out.println("\n");
+        System.out.printf(Language.getLanguageFormat(), "Language", "Population_per_Language", "Percentage");
+        System.out.println("\n");
+    }
 }

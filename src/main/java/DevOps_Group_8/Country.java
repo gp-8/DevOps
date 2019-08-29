@@ -67,4 +67,14 @@ public Country(){}
     public void setCapital(int capital) {
         this.capital = capital;
     }
+
+    public static String getCountryFormat() {
+        return "%-30.25s  %-30.25s  %-30s  %-30s %-30s  %-30s";
+    }
+
+    public static void printCountry() {
+        System.out.println("\n");
+        System.out.printf(Country.getCountryFormat(), "Code", "Name", "Continent", "Region", "Capital", "POPULATION");
+        System.out.println("\n");
+    }
 }

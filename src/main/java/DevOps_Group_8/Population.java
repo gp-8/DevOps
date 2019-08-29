@@ -106,4 +106,14 @@ public class Population {
     public void setPopulation_percent(float population_percent) {
         this.population_percent = population_percent;
     }
+
+    public static String getPopulationFormat() {
+        return "%-30.25s  %-30.25s  %-30s %-30.25s  %-30.25s  %-30s";
+    }
+
+    public static void printPopulation() {
+        System.out.println("\n");
+        System.out.printf(Population.getPopulationFormat(), "total_population", "population_in_city", "percent_in_city","population_not_in_city","percent_not_in_city","population_percent");
+        System.out.println("\n");
+    }
 }
