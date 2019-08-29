@@ -115,6 +115,45 @@ public class App {
         ArrayList<City> cities16 = a.gettopCapitalCityRegion();
         a.displayTopCapitalCityRegion(cities16);
 
+        //Population of People, People living in Cities, and People not living in Cities in each Continent
+        ArrayList<Population> population1 = a.getPopulationDetailContinent();
+        a.displayPopulationDetailContinent(population1);
+
+        //Population of People, People living in Cities, and People not living in Cities in each Region
+        ArrayList<Population> population2 = a.getPopulationDetailRegion();
+        a.displayPopulationDetailRegion(population2);
+
+        //Population of People, People living in Cities, and People not living in Cities in each Country
+        ArrayList<Population> population3 = a.getPopulationDetailCountry();
+        a.displayPopulationDetailCountry(population3);
+
+        //The population of the world
+        ArrayList<Population> population4 = a.getWorldPopulationDetail();
+        a.displayWorldPopulationDetail(population4);
+
+        //The population of a continent
+        ArrayList<Population> population5 = a.getContinentPopulationDetail();
+        a.displayContinentPopulationDetail(population5);
+
+        //The population of a region
+        ArrayList<Population> population6 = a.getRegionPopulationDetail();
+        a.displayRegionPopulationDetail(population6);
+
+        //The population of a country
+        ArrayList<Population> population7 = a.getCountryPopulationDetail();
+        a.displayCountryPopulationDetail(population7);
+
+        //The population of a district
+        ArrayList<Population> population8 = a.getDistrictPopulationDetail();
+        a.displayDistrictPopulationDetail(population8);
+
+        //The population of a city
+        ArrayList<Population> population9 = a.getCityPopulationDetail();
+        a.displayCityPopulationDetail(population9);
+
+        //The Country Language Detail
+        ArrayList<Population> population10 = a.getCountryLanguageDetail();
+        a.displayCountryLanguageDetail(population10);
 
         // Disconnect from database
         a.disconnect();
@@ -1627,6 +1666,553 @@ public class App {
             if(ct==null)
                 continue;
             System.out.printf("%20s%20s%20s%20s%20s%20s",ct.getCountry().getCapital(),ct.getName(),ct.getCountry().getName(),ct.getCountry().getRegion(),ct.getDistrict(),ct.getPopulation());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<Population> getPopulationDetailContinent() {
+        ArrayList<Population> populations = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "Select country.continent, SUM(country.population) as total_population, " +
+                            "SUM((select SUM(population) from city where countrycode = country.code)) as population_in_city, " +
+                            "(SUM((select SUM(population) from city where countrycode = country.code)) / SUM(country.population))*100 as percent_in_city " +
+                            ", (sum(country.population)-SUM((select SUM(population) from city where countrycode = country.code))) as population_not_in_city, " +
+                            "((sum(country.population)-SUM((select SUM(population) from city where countrycode = country.code))) " +
+                            "/ SUM(country.population))*100 as percent_not_in_city from country GROUP BY country.continent;";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    Country c = new Country();
+                    c.setContinent(rset.getString(1));
+
+                    Population popu = new Population();
+                    popu.setCountry(c);
+                    popu.setTotal_population(rset.getLong(2));
+                    popu.setPopulation_in_city(rset.getLong(3));
+                    popu.setPercent_in_city(rset.getFloat(4));
+                    popu.setPopulation_not_in_city(rset.getLong(5));
+                    popu.setPercent_not_in_city(rset.getFloat(6));
+                    populations.add(popu);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get people living in cities, and people not living in cities in each continent");
+        }
+        return populations;
+    }
+
+    public void displayPopulationDetailContinent(ArrayList<Population> population1)
+    {
+        // Check cities data is not null
+        System.out.print("***********************Population of people, people living in Cities, and People not living in Cities in each Continent***********************\n");
+        System.out.printf("%30s%30s%30s%30s%30s%30s", "Continent","Total_Population","Population_in_Ciy","Percent_in_City","Population_not_in_City","Percent_not_in_City\n");
+        for(Population po:population1)
+        {
+            if(po==null)
+                continue;
+            System.out.printf("%30s%30s%30s%30s%30s%30s",po.getCountry().getContinent(),po.getTotal_population(),po.getPopulation_in_city(),po.getPercent_in_city(),po.getPopulation_not_in_city(),po.getPercent_not_in_city());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<Population> getPopulationDetailRegion() {
+        ArrayList<Population> populations = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "Select country.region, SUM(country.population) as TotalPopulation," +
+                            " SUM((select SUM(population) from city where countrycode = country.code)) as population_in_city," +
+                            " (SUM((select SUM(population) from city where countrycode = country.code)) / SUM(country.population))*100 as percent_in_cities ," +
+                            " (sum(country.population)-SUM((select SUM(population) from city where countrycode = country.code))) as population_not_in_city," +
+                            " ((sum(country.population)-SUM((select SUM(population) from city where countrycode = country.code))) / SUM(country.population))*100 as percent_not_in_cities" +
+                            " from country GROUP BY country.region;";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    Country c = new Country();
+                    c.setRegion(rset.getString(1));
+
+                    Population popu = new Population();
+                    popu.setCountry(c);
+                    popu.setTotal_population(rset.getLong(2));
+                    popu.setPopulation_in_city(rset.getLong(3));
+                    popu.setPercent_in_city(rset.getFloat(4));
+                    popu.setPopulation_not_in_city(rset.getLong(5));
+                    popu.setPercent_not_in_city(rset.getFloat(6));
+                    populations.add(popu);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get people living in cities, and people not living in cities in each region");
+        }
+        return populations;
+    }
+
+    public void displayPopulationDetailRegion(ArrayList<Population> population2)
+    {
+        // Check cities data is not null
+        System.out.print("***********************Population of people, people living in Cities, and People not living in Cities in each Region***********************\n");
+        System.out.printf("%30s%30s%30s%30s%30s%30s", "Region","Total_Population","Population_in_Ciy","Percent_in_City","Population_not_in_City","Percent_not_in_City\n");
+        for(Population po:population2)
+        {
+            if(po==null)
+                continue;
+            System.out.printf("%30s%30s%30s%30s%30s%30s",po.getCountry().getRegion(),po.getTotal_population(),po.getPopulation_in_city(),po.getPercent_in_city(),po.getPopulation_not_in_city(),po.getPercent_not_in_city());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<Population> getPopulationDetailCountry() {
+        ArrayList<Population> populations = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "select country.name, " +
+                            "country.population, " +
+                            "country.population-sum(city.population) as 'population_not_in_city', " +
+                            "((country.population-sum(city.population))/country.population)*100 as '%'," +
+                            " country.population - (country.population-sum(city.population)) as 'population_in_city', " +
+                            "((country.population - (country.population-sum(city.population)))/country.population)*100 as '%' " +
+                            "from country country join city city on country.code = city.countrycode " +
+                            "where city.countrycode = country.code GROUP BY country.name, country.population ORDER BY country.name;";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    Country c = new Country();
+                    c.setName(rset.getString(1));
+                    c.setPopulation(rset.getInt(2));
+
+                    Population popu = new Population();
+                    popu.setCountry(c);
+                    popu.setPopulation_in_city(rset.getLong(5));
+                    popu.setPercent_in_city(rset.getFloat(6));
+                    popu.setPopulation_not_in_city(rset.getLong(3));
+                    popu.setPercent_not_in_city(rset.getFloat(4));
+                    populations.add(popu);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get people living in cities, and people not living in cities in each Country");
+        }
+        return populations;
+    }
+
+    public void displayPopulationDetailCountry(ArrayList<Population> population3)
+    {
+        // Check cities data is not null
+        System.out.print("***********************Population of people, people living in Cities, and People not living in Cities in each Country***********************\n");
+        System.out.printf("%30s%30s%30s%30s%30s%30s", "Region","Total_Population","Population_not_in_Ciy","Percent_not_in_City","Population_in_City","Percent_in_City\n");
+        for(Population po:population3)
+        {
+            if(po==null)
+                continue;
+            System.out.printf("%30s%30s%30s%30s%30s%30s",po.getCountry().getName(),po.getCountry().getPopulation(),po.getPopulation_not_in_city(),po.getPercent_not_in_city(),po.getPopulation_in_city(),po.getPercent_in_city());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<Population> getWorldPopulationDetail() {
+        ArrayList<Population> populations = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT sum(population) FROM country";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    Population popu = new Population();
+                    popu.setTotal_population(rset.getLong(1));
+                    populations.add(popu);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get World Population");
+        }
+        return populations;
+    }
+
+    public void displayWorldPopulationDetail(ArrayList<Population> population4)
+    {
+        // Check cities data is not null
+        System.out.print("***********************The Population of the World***********************\n");
+        System.out.printf("%30s", "Population\n");
+        for(Population po:population4)
+        {
+            if(po==null)
+                continue;
+            System.out.printf("%30s",po.getTotal_population());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<Population> getContinentPopulationDetail() {
+        ArrayList<Population> populations = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a Continent: ");
+            String continent = scanner.next(); // get string
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT continent,sum(population) FROM country WHERE continent = '"+continent+"' group by continent;";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    Country c = new Country();
+                    c.setContinent(rset.getString(1));
+
+                    Population popu = new Population();
+                    popu.setCountry(c);
+                    popu.setTotal_population(rset.getLong(2));
+                    populations.add(popu);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a Continent Population");
+        }
+        return populations;
+    }
+
+    public void displayContinentPopulationDetail(ArrayList<Population> population5)
+    {
+        // Check cities data is not null
+        System.out.print("***********************The Population of a Continent***********************\n");
+        System.out.printf("%20s%30s", "Continent","Population\n");
+        for(Population po:population5)
+        {
+            if(po==null)
+                continue;
+            System.out.printf("%20s%30s",po.getCountry().getContinent(),po.getTotal_population());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<Population> getRegionPopulationDetail() {
+        ArrayList<Population> populations = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a Region: ");
+            String region = scanner.next(); // get string
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT region,sum(population) FROM country WHERE region = '"+region+"' group by region;";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    Country c = new Country();
+                    c.setRegion(rset.getString(1));
+
+                    Population popu = new Population();
+                    popu.setCountry(c);
+                    popu.setTotal_population(rset.getLong(2));
+                    populations.add(popu);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a Region Population");
+        }
+        return populations;
+    }
+
+    public void displayRegionPopulationDetail(ArrayList<Population> population6)
+    {
+        // Check cities data is not null
+        System.out.print("***********************The Population of a Region***********************\n");
+        System.out.printf("%20s%30s", "Region","Population\n");
+        for(Population po:population6)
+        {
+            if(po==null)
+                continue;
+            System.out.printf("%20s%30s",po.getCountry().getRegion(),po.getTotal_population());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+
+    public ArrayList<Population> getCountryPopulationDetail() {
+        ArrayList<Population> populations = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a Country: ");
+            String country = scanner.next(); // get string
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT name,sum(population) FROM country WHERE name = '"+country+"' group by name;";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    Country c = new Country();
+                    c.setName(rset.getString(1));
+
+                    Population popu = new Population();
+                    popu.setCountry(c);
+                    popu.setTotal_population(rset.getLong(2));
+                    populations.add(popu);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a Country Population");
+        }
+        return populations;
+    }
+
+    public void displayCountryPopulationDetail(ArrayList<Population> population7)
+    {
+        // Check cities data is not null
+        System.out.print("***********************The Population of a Country***********************\n");
+        System.out.printf("%20s%30s", "Country","Population\n");
+        for(Population po:population7)
+        {
+            if(po==null)
+                continue;
+            System.out.printf("%20s%30s",po.getCountry().getName(),po.getTotal_population());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<Population> getDistrictPopulationDetail() {
+        ArrayList<Population> populations = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a District: ");
+            String district = scanner.next(); // get string
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT district,sum(population) FROM city WHERE district = '"+district+"' group by district;";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    City c = new City();
+                    c.setDistrict(rset.getString(1));
+
+                    Population popu = new Population();
+                    popu.setCity(c);
+                    popu.setTotal_population(rset.getLong(2));
+                    populations.add(popu);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a District Population");
+        }
+        return populations;
+    }
+
+    public void displayDistrictPopulationDetail(ArrayList<Population> population8)
+    {
+        // Check cities data is not null
+        System.out.print("***********************The Population of a District***********************\n");
+        System.out.printf("%20s%30s", "District","Population\n");
+        for(Population po:population8)
+        {
+            if(po==null)
+                continue;
+            System.out.printf("%20s%30s",po.getCity().getDistrict(),po.getTotal_population());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<Population> getCityPopulationDetail() {
+        ArrayList<Population> populations = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a City: ");
+            String city = scanner.next(); // get string
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT name,population FROM city WHERE name = '"+city+"';";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    City c = new City();
+                    c.setName(rset.getString(1));
+                    c.setPopulation(rset.getInt(2));
+
+                    Population popu = new Population();
+                    popu.setCity(c);
+                    populations.add(popu);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a City Population");
+        }
+        return populations;
+    }
+
+    public void displayCityPopulationDetail(ArrayList<Population> population9)
+    {
+        // Check cities data is not null
+        System.out.print("***********************The Population of a City***********************\n");
+        System.out.printf("%20s%30s", "City","Population\n");
+        for(Population po:population9)
+        {
+            if(po==null)
+                continue;
+            System.out.printf("%20s%30s",po.getCity().getName(),po.getCity().getPopulation());
+            System.out.println("\n");
+        }
+        System.out.print("******************************************************************************************************************\n");
+    }
+
+    public ArrayList<Population> getCountryLanguageDetail() {
+        ArrayList<Population> populations = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT countrylanguage.language, sum(countrylanguage.percentage * city.population), " +
+                            "sum(city.population * countrylanguage.percentage)/(SELECT sum(population) from country) " +
+                            "from countrylanguage, city " +
+                            "where countrylanguage.countrycode = city.countrycode " +
+                            "and countrylanguage.language in ('Chinese','English','Hindi','Spanish','Arabic') " +
+                            "GROUP BY countrylanguage.language;";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    Language lan = new Language();
+                    lan.setLanguage(rset.getString(1));
+                    lan.setPopulation_per_language(rset.getFloat(2));
+
+                    Population popu = new Population();
+                    popu.setLanguage(lan);
+                    popu.setPopulation_percent(rset.getFloat(3));
+                    populations.add(popu);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a CountryLanguage");
+        }
+        return populations;
+    }
+
+    public void displayCountryLanguageDetail(ArrayList<Population> population10)
+    {
+        // Check cities data is not null
+        System.out.print("***********************Country Language Detail***********************\n");
+        System.out.printf("%20s%30s%30s", "Language","Percentage","Population\n");
+        for(Population po:population10)
+        {
+            if(po==null)
+                continue;
+            System.out.printf("%20s%30s%30s",po.getLanguage().getLanguage(),po.getLanguage().getPopulation_per_language(),po.getPopulation_percent());
             System.out.println("\n");
         }
         System.out.print("******************************************************************************************************************\n");
