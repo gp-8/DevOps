@@ -2,9 +2,12 @@
 
 package DevOps_Group_8;
 
+//import org.graalvm.compiler.lir.aarch64.AArch64ArithmeticOp;
+import com.sun.jdi.event.ClassUnloadEvent;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 
 class AppTest
@@ -189,6 +192,69 @@ class AppTest
         cities.add(null);
         app.displayTopCitiesDistrict(cities);
     }
+//====================================================
+    // for code_review 4
+    @Test
+    void displayPopulationDetailContinentTEST(){
+        ArrayList<Population> popu = new ArrayList<>();
+        popu.add(null);
+        app.displayPopulationDetailContinent(popu);
+    }
+    @Test
+    void displayPopulationDetailRegionTEST(){
+        ArrayList<Population> popu =new ArrayList<>();
+        popu.add(null);
+        app.displayPopulationDetailRegion(popu);
+    }
+    @Test
+    void displayPopulationDetailCountryTEST(){
+        ArrayList<Population> popu = new ArrayList<>();
+        popu.add(null);
+        app.displayPopulationDetailCountry(popu);
+    }
+    @Test
+    void displayWorldPopulationDetailTEST(){
+        ArrayList<Population> popu = new ArrayList<>();
+        popu.add(null);
+        app.displayWorldPopulationDetail(popu);
+    }
+    @Test
+    void displayContinentPopulationDetailTEST(){
+        ArrayList<Population> popu = new ArrayList<>();
+        popu.add(null);
+        app.displayContinentPopulationDetail(popu);
+    }
+    @Test
+    void displayRegionPopulationDetailTEST(){
+        ArrayList<Population> popu= new ArrayList<>();
+        popu.add(null);
+        app.displayRegionPopulationDetail(popu);
+    }
+    @Test
+    void displayCountryPopulationDetailTEST(){
+        ArrayList<Population>popu = new ArrayList<>();
+        popu.add(null);
+        app.displayCountryPopulationDetail(popu);
+    }
+    @Test
+    void displayDistrictPopulationDetailTEST(){
+        ArrayList<Population> popu = new ArrayList<>();
+        popu.add(null);
+        app.displayDistrictPopulationDetail(popu);
+    }
+    @Test
+    void displayCityPopulationDetailTEST(){
+        ArrayList<Population> popu= new ArrayList<>();
+        popu.add(null);
+        app.displayCityPopulationDetail(popu);
+    }
+
+    @Test
+    void displayCountryLanguageDetailTEST(){
+        ArrayList<Population> popu = new ArrayList<>();
+        app.displayCountryLanguageDetail(popu);
+    }
+    //=======================================================
 
     @Test
     void getcityTestNull(){
@@ -222,6 +288,29 @@ class AppTest
         city.getDistrict();
         city.getCountrycode();
     }
+    @Test
+    void testinglanguage(){
+        Language language =new Language();
+        language.setLanguage("Testing");
+        language.setPopulation_per_language(1);
+        language.setCountrycode("TET");
+        language.setPercentage(20);
+        language.getLanguage();
+        language.getPopulation_per_language();
+        language.getCountrycode();
+        language.getPercentage();
+    }
+    @Test
+    void testingPopulation(){
+        Population population = new Population();
+        population.setTotal_population(100);
+        population.setPercent_in_city(20);
+        population.setTotal_population(100);
+        population.setPercent_not_in_city(10);
+        population.setPopulation_in_city(100);
+        population.setPopulation_not_in_city(200);
+        population.setPopulation_percent(100);
+    }
 
     @Test
     void testprintCity()
@@ -250,6 +339,9 @@ class AppTest
         Population population = new Population();
         population.printPopulation();
     }
+
+
+
 
 }
 
