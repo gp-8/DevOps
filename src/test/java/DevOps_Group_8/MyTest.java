@@ -3,7 +3,7 @@
 package DevOps_Group_8;
 
 //import org.graalvm.compiler.lir.aarch64.AArch64ArithmeticOp;
-import com.sun.jdi.event.ClassUnloadEvent;
+//import com.sun.jdi.event.ClassUnloadEvent;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -252,7 +252,26 @@ class AppTest
     @Test
     void displayCountryLanguageDetailTEST(){
         ArrayList<Population> popu = new ArrayList<>();
+        popu.add(null);
         app.displayCountryLanguageDetail(popu);
+    }
+    @Test
+    void displayCountryReportTEST(){
+        ArrayList<Country> popu = new ArrayList<>();
+        popu.add(null);
+        app.displayCountryReport(popu);
+    }
+    @Test
+    void displayCityReportTEST(){
+        ArrayList<City> popu = new ArrayList<>();
+        popu.add(null);
+        app.displayCityReport(popu);
+    }
+    @Test
+    void displayCapitalCityReportTEST(){
+        ArrayList<City> popu = new ArrayList<>();
+        popu.add(null);
+        app.displayCapitalCityReport(popu);
     }
     //=======================================================
 
