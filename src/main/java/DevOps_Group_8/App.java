@@ -1425,9 +1425,9 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, city.CountryCode, District, city.Population "
+                    "SELECT city.Name, city.CountryCode, city.District, city.Population "
                             + "FROM city "
-                            + "WHERE District = 'California'"
+                            + "WHERE city.District = 'California' "
                             + "ORDER BY city.Population DESC "
                             + "Limit " + user_input;
 
@@ -1450,6 +1450,7 @@ public class App {
                     ci.setCountrycode(rset.getString(2));
                     ci.setDistrict(rset.getString(3));
                     ci.setPopulation(rset.getInt(4));
+                    cities.add(ci);
                 }
             }
 
