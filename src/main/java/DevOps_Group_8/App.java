@@ -159,6 +159,10 @@ public class App {
         ArrayList<Country> cousr = a.getCountryReport();
         a.displayCountryReport(cousr);
 
+        //The City Report
+        ArrayList<City> cityr = a.getCityReport();
+        a.displayCityReport(cityr);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -2274,4 +2278,59 @@ public class App {
             System.out.print("\n");
         }
        }
+    public ArrayList<City> getCityReport() {
+        ArrayList<City> cityr = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a city to get report detail: ");
+            String cityreport = scanner.next(); // get string
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT  city.Name, country.Name, city.District, city.Population FROM city, country WHERE city.name = '"+cityreport+"' " +
+                            "and city.countrycode = country.code;";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    Country c = new Country();
+                    c.setName(rset.getString(2));
+
+                    City city = new City();
+                    city.setName(rset.getString(1));
+                    city.setCountry(c);
+                    city.setDistrict(rset.getString(3));
+                    city.setPopulation(rset.getInt(4));
+
+                    cityr.add(city);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a Country Report");
+        }
+        return cityr;
+    }
+
+    public void displayCityReport(ArrayList<City> cityr)
+    {
+        // Check cities data is not null
+        System.out.print("***********************City Report***********************\n");
+        System.out.printf("%25s%25s%25s%25s","Name","Country","District","Population\n");
+        for(City cir:cityr)
+        {
+            if (cir==null)
+                continue;
+            System.out.printf("%25s%25s%25s%25s",cir.getName(),cir.getCountry().getName(), cir.getDistrict(),cir.getPopulation());
+            System.out.print("\n");
+        }
+    }
 }
