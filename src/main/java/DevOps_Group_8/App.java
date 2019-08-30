@@ -619,7 +619,7 @@ public class App {
     }
 
 
-    //retrieving cities' population for a country
+    //retrieving cities' population for a country by sorting population large to small
     public ArrayList<City> getCitybyCountry()
     {
         ArrayList<City> cities = new ArrayList<>();
