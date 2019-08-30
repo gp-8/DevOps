@@ -155,6 +155,10 @@ public class App {
         ArrayList<Population> population10 = a.getCountryLanguageDetail();
         a.displayCountryLanguageDetail(population10);
 
+        //The Country Report
+        ArrayList<Country> cousr = a.getCountryReport();
+        a.displayCountryReport(cousr);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -2218,4 +2222,56 @@ public class App {
         System.out.print("******************************************************************************************************************\n");
     }
 
+    public ArrayList<Country> getCountryReport() {
+        ArrayList<Country> cousr = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a country to get report detail: ");
+            String countryreport = scanner.next(); // get string
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT  Code, Name, Continent, Region, Population, Capital FROM country WHERE name = '"+countryreport+"';";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    Country country = new Country();
+                    country.setCode(rset.getString(1));
+                    country.setName(rset.getString(2));
+                    country.setContinent(rset.getString(3));
+                    country.setRegion(rset.getString(4));
+                    country.setPopulation(rset.getInt(5));
+                    country.setCapital(rset.getInt(6));
+                    cousr.add(country);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a Country Report");
+        }
+        return cousr;
+    }
+
+    public void displayCountryReport(ArrayList<Country> cousr)
+    {
+        // Check cities data is not null
+        System.out.print("***********************Country Report***********************\n");
+        System.out.printf("%25s%25s%25s%25s%25s%25s","Code","Name","Continent","Region","Population","Capital\n");
+        for(Country cor:cousr)
+        {
+            if (cor==null)
+                continue;
+            System.out.printf("%25s%25s%25s%25s%25s%25s",cor.getCode(),cor.getName(),cor.getContinent(),cor.getRegion(),cor.getPopulation(),cor.getCapital());
+            System.out.print("\n");
+        }
+       }
 }
