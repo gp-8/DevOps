@@ -310,6 +310,12 @@ class AppTest
         population.setPopulation_in_city(100);
         population.setPopulation_not_in_city(200);
         population.setPopulation_percent(100);
+        population.getTotal_population();
+        population.getPercent_in_city();
+        population.getPopulation_in_city();
+        population.getPopulation_percent();
+        population.getPercent_not_in_city();
+        population.getPopulation_not_in_city();
     }
 
     @Test
