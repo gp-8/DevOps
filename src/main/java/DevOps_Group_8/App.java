@@ -163,6 +163,10 @@ public class App {
         ArrayList<City> cityr = a.getCityReport();
         a.displayCityReport(cityr);
 
+        //The City Report
+        ArrayList<City> cpcityr = a.getCapitalCityReport();
+        a.displayCapitalCityReport(cpcityr);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -2315,7 +2319,7 @@ public class App {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get a Country Report");
+            System.out.println("Failed to get a City Report");
         }
         return cityr;
     }
@@ -2330,6 +2334,60 @@ public class App {
             if (cir==null)
                 continue;
             System.out.printf("%25s%25s%25s%25s",cir.getName(),cir.getCountry().getName(), cir.getDistrict(),cir.getPopulation());
+            System.out.print("\n");
+        }
+    }
+    public ArrayList<City> getCapitalCityReport() {
+        ArrayList<City> cpcityr = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a capital city to get report detail: ");
+            String capitalcityreport = scanner.next(); // get string
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT  city.Name, country.Name, city.Population FROM city, country WHERE city.ID = '"+capitalcityreport+"' " +
+                            "and city.ID = country.Capital;";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            if (rset == null) {
+                System.out.println("Not Found");
+            } else {
+                //Return new city if valid.
+                //Check one is returned
+                while (rset.next()) {
+                    Country c = new Country();
+                    c.setName(rset.getString(2));
+
+                    City city = new City();
+                    city.setName(rset.getString(1));
+                    city.setCountry(c);
+                    city.setPopulation(rset.getInt(3));
+
+                    cpcityr.add(city);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a Capital City Report");
+        }
+        return cpcityr;
+    }
+
+    public void displayCapitalCityReport(ArrayList<City> cpcityr)
+    {
+        // Check cities data is not null
+        System.out.print("***********************Capital City Report***********************\n");
+        System.out.printf("%25s%25s%25s","Name","Country","Population\n");
+        for(City cpcir:cpcityr)
+        {
+            if (cpcir==null)
+                continue;
+            System.out.printf("%25s%25s%25s",cpcir.getName(),cpcir.getCountry().getName(),cpcir.getPopulation());
             System.out.print("\n");
         }
     }
