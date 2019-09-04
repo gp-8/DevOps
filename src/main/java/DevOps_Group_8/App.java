@@ -25,150 +25,328 @@ public class App {
             a.connect(args[0]);
         }
 
-        City c2 = a.getCity(2710);
-        System.out.println(c2);
-        //All the countries in the world organised by largest population to smallest.
-        ArrayList<Country> cous = a.getCountry();
-        a.displayCountry(cous);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("1. City Report\n" +
+                "2. Country Report\n" +
+                "3. Capital City\n" +
+                "4. Population\n" +
+                "5. Country Language\n");
+        System.out.println("Please choose a menu: ");
+        String menu = scanner.next();
+        if (menu.equals("1"))
+        {
+            System.out.print("********************Country Report********************\n");
+            System.out.println("1. All the countries in the world organised by largest population to smallest\n" +
+                    "2. All the countries in a continent organised by largest population to smallest\n" +
+                    "3. All the countries in a region organised by largest population to smallest\n" +
+                    "4. The top N populated countries in the world where N is provided by the user\n" +
+                    "5. The top N populated countries in a continent where N is provided by the user\n" +
+                    "6. The top N populated countries in a region where N is provided by the user.\n");
+            System.out.println("Please choose a menu to view Country Report: ");
+            String country = scanner.next();
+            if (country.equals("1"))
+            {
+                //All the countries in the world organised by largest population to smallest.
+                ArrayList<Country> cous = a.getCountry();
+                a.displayCountry(cous);
+                a.disconnect();
+            }
+            else if (country.equals("2"))
+            {
+                // Get All the countries in a continent organised by largest population to smallest.
+                ArrayList<Country> countries=a.countries_continent_largest_to_smallest();
+                a.displayCountries_continent_largest_to_smallest(countries);
+                a.disconnect();
+            }
+            else if (country.equals("3"))
+            {
+                // All the countries in a region organised by largest population to smallest.
+                ArrayList<Country> Countries=a.countries_region_largest_to_smallest();
+                a.displayCountries_region_largest_to_smallest(Countries);
+                a.disconnect();
+            }
+            else if (country.equals("4"))
+            {
+                //Top N Countries in the world organised by largest to smallest.
+                ArrayList<Country> countries1 = a.gettopCountryWorld();
+                a.displayTopCountriesbyWorld(countries1);
+                a.disconnect();
 
-        // Get All the countries in a continent organised by largest population to smallest.
-        ArrayList<Country> countries=a.countries_continent_largest_to_smallest();
-        a.displayCountries_continent_largest_to_smallest(countries);
+            }
+            else if (country.equals("5"))
+            {
+                //Top N populated countries in a continent where N is provided by the user
+                ArrayList<Country> countries2 = a.gettopCountryContinent();
+                a.displayTopCountriesbyContinent(countries2);
+                a.disconnect();
 
-        // All the countries in a region organised by largest population to smallest.
-        ArrayList<Country> Countries=a.countries_region_largest_to_smallest();
-        a.displayCountries_region_largest_to_smallest(Countries);
+            }
+            else if (country.equals("6"))
+            {
+                //Top N populated countries in a region where N is provided by the user.
+                ArrayList<Country> countries3 = a.gettopCountryRegion();
+                a.displayTopCountriesbyRegion(countries3);
+                a.disconnect();
+            }
+            else
+            {
+                System.out.println("You've entered a wrong input!!");
+                // Disconnect from database
+                a.disconnect();
+            }
+        }
+        else if (menu.equals("2"))
+        {
+            System.out.print("********************City Report********************\n");
+            System.out.println("1. All the cities in the world organised by largest population to smallest\n" +
+                    "2. All the cities in a continent organised by largest population to smallest\n" +
+                    "3. All the cities in a region organised by largest population to smallest.\n" +
+                    "4. All the cities in a country organised by largest population to smallest.\n" +
+                    "5. All the cities in a district organised by largest population to smallest.\n" +
+                    "6. The top N populated cities in the world where N is provided by the user.\n" +
+                    "7. The top N populated cities in a continent where N is provided by the user.\n" +
+                    "8. The top N populated cities in a region where N is provided by the user.\n" +
+                    "9. The top N populated cities in a country where N is provided by the user.\n" +
+                    "10. The top N populated cities in a district where N is provided by the user.\n");
+            System.out.println("Please choose a menu to view City Report: ");
+            String city = scanner.next();
+            if (city.equals("1"))
+            {
+                //All the cities in the world organised by largest population to smallest.
+                ArrayList<City> cities = a.getCity();
+                a.displayCity(cities);
+                a.disconnect();
+            }
+            else if (city.equals("2"))
+            {
+                //All the cities in a continent organised by largest population to smallest.
+                ArrayList<City> cities2=a.getCity_continent();
+                a.displayCityContinent(cities2);
+                a.disconnect();
+            }
+            else if (city.equals("3"))
+            {
+                //All the cities in a region organised by largest population to smallest.
+                ArrayList<City> cities3 = a.getCity_Region();
+                a.displayCityRegion(cities3);
+                a.disconnect();
+            }
+            else if (city.equals("4"))
+            {
+                // All the cities in a country organised by largest population to smallest.
+                ArrayList<City> cities4= a.getCitybyCountry();
+                a.displayCityCountry(cities4);
+                a.disconnect();
+            }
+            else if (city.equals("5"))
+            {
+                //All the cities in a district organised by largest population to smallest.
+                ArrayList<City> cities5 = a.getCitybyDistrict();
+                a.displayCityDistrict(cities5);
+                a.disconnect();
+            }
+            else if (city.equals("6"))
+            {
+                //Top N populated cities in the world where N is provided by the user.
+                ArrayList<City> cities9 = a.gettopCityWorld();
+                a.displayTopCitiesWorld(cities9);
+                a.disconnect();
+            }
+            else if (city.equals("7"))
+            {
+                //Top N populated cities in a continent where N is provided by the user.
+                ArrayList<City> cities10 = a.gettopCityContinent();
+                a.displayTopCitiesContinent(cities10);
+                a.disconnect();
+            }
+            else if (city.equals("8"))
+            {
+                //Top N populated cities in a region where N is provided by the user.
+                ArrayList<City> cities11 = a.gettopCityRegion();
+                a.displayTopCitiesRegion(cities11);
+                a.disconnect();
+            }
+            else if (city.equals("9"))
+            {
+                //Top N populated cities in a country where N is provided by the user.
+                ArrayList<City> cities12 = a.gettopCityCountry();
+                a.displayTopCitiesCountry(cities12);
+                a.disconnect();
+            }
+            else if (city.equals("10"))
+            {
+                //Top N populated cities in a district where N is provided by the user.
+                ArrayList<City> cities13 = a.gettopCityDistrict();
+                a.displayTopCitiesDistrict(cities13);
+                a.disconnect();
+            }
+            else
+            {
+                System.out.println("You've entered a wrong input!!");
+                // Disconnect from database
+                a.disconnect();
+            }
+        }
+        else if (menu.equals("3"))
+        {
+            System.out.print("********************Capital City Report********************\n");
+            System.out.println("1. All the capital cities in the world organised by largest population to smallest\n" +
+                    "2. All the capital cities in a continent organised by largest population to smallest.\n" +
+                    "3. All the capital cities in a region organised by largest to smallest.\n" +
+                    "4. The top N populated capital cities in the world where N is provided by the user.\n" +
+                    "5. The top N populated capital cities in a continent where N is provided by the user.\n" +
+                    "6. The top N populated capital cities in a region where N is provided by the user.\n");
+            System.out.println("Please choose a menu to view Capital City Report: ");
+            String capcity = scanner.next();
+            if (capcity.equals("1"))
+            {
+                //All the capital cities in the world organised by largest population to smallest.
+                ArrayList<City> cities6 = a.getCapitalCities();
+                a.displayCapitalCities(cities6);
+                a.disconnect();
+            }
+            else if (capcity.equals("2"))
+            {
+                //All the capital cities in a continent organised by largest population to smallest.
+                ArrayList<City> cities7 = a.getCapitalCitiesbyContinent();
+                a.displayCapitalCitiesbyContinent(cities7);
+                a.disconnect();
+            }
+            else if (capcity.equals("3"))
+            {
+                //All the capital cities in a region organised by largest to smallest.
+                ArrayList<City> cities8 = a.getCapitalCitiesbyRegion();
+                a.displayCapitalCitiesbyRegion(cities8);
+                a.disconnect();
+            }
+            else if (capcity.equals("4"))
+            {
+                //Top N populated capital cities in the world where N is provided by the user.
+                ArrayList<City> cities14 = a.gettopCapitalCityWorld();
+                a.displayTopCapitalCityWorld(cities14);
+            }
+            else if (capcity.equals("5"))
+            {
+                //Top N populated capital cities in a continent where N is provided by the user.
+                ArrayList<City> cities15 = a.gettopCapitalCityContinent();
+                a.displayTopCapitalCityContinent(cities15);
+                a.disconnect();
+            }
+            else if (capcity.equals("6"))
+            {
+                //Top N populated capital cities in a region where N is provided by the user.
+                ArrayList<City> cities16 = a.gettopCapitalCityRegion();
+                a.displayTopCapitalCityRegion(cities16);
+                a.disconnect();
+            }
+            else
+            {
+                System.out.println("You've entered a wrong input!!");
+                // Disconnect from database
+                a.disconnect();
+            }
+        }
+        else if (menu.equals("4"))
+        {
+            System.out.print("********************Population Report********************\n");
+            System.out.println("1. The population of people, people living in cities, and people not living in cities in each continent.\n" +
+                    "2. The population of people, people living in cities, and people not living in cities in each region.\n" +
+                    "3. The population of people, people living in cities, and people not living in cities in each country.\n" +
+                    "4. The population of the world.\n" +
+                    "5. The population of a continent.\n" +
+                    "6. The population of a region.\n" +
+                    "7. The population of a country.\n" +
+                    "8. The population of a district.\n" +
+                    "9. The population of a city.\n");
+            System.out.println("Please choose a menu to view Population Report: ");
+            String population = scanner.next();
+            if (population.equals("1"))
+            {
+                //Population of People, People living in Cities, and People not living in Cities in each Continent
+                ArrayList<Population> population1 = a.getPopulationDetailContinent();
+                a.displayPopulationDetailContinent(population1);
+                a.disconnect();
+            }
+            else if (population.equals("2"))
+            {
+                //Population of People, People living in Cities, and People not living in Cities in each Region
+                ArrayList<Population> population2 = a.getPopulationDetailRegion();
+                a.displayPopulationDetailRegion(population2);
+                a.disconnect();
+            }
+            else if (population.equals("3"))
+            {
+                //Population of People, People living in Cities, and People not living in Cities in each Country
+                ArrayList<Population> population3 = a.getPopulationDetailCountry();
+                a.displayPopulationDetailCountry(population3);
+                a.disconnect();
+            }
+            else if (population.equals("4"))
+            {
+                //The population of the world
+                ArrayList<Population> population4 = a.getWorldPopulationDetail();
+                a.displayWorldPopulationDetail(population4);
+                a.disconnect();
+            }
+            else if (population.equals("5"))
+            {
+                //The population of a continent
+                ArrayList<Population> population5 = a.getContinentPopulationDetail();
+                a.displayContinentPopulationDetail(population5);
+                a.disconnect();
+            }
+            else if (population.equals("6"))
+            {
+                //The population of a region
+                ArrayList<Population> population6 = a.getRegionPopulationDetail();
+                a.displayRegionPopulationDetail(population6);
+                a.disconnect();
+            }
+            else if (population.equals("7"))
+            {
+                //The population of a country
+                ArrayList<Population> population7 = a.getCountryPopulationDetail();
+                a.displayCountryPopulationDetail(population7);
+                a.disconnect();
+            }
+            else if (population.equals("8"))
+            {
+                //The population of a district
+                ArrayList<Population> population8 = a.getDistrictPopulationDetail();
+                a.displayDistrictPopulationDetail(population8);
+                a.disconnect();
+            }
+            else if (population.equals("9"))
+            {
+                //The population of a city
+                ArrayList<Population> population9 = a.getCityPopulationDetail();
+                a.displayCityPopulationDetail(population9);
+                a.disconnect();
+            }
+            else
+            {
+                System.out.println("You've entered a wrong input!!");
+                // Disconnect from database
+                a.disconnect();
+            }
+        }
+        else if (menu.equals("5"))
+        {
+            System.out.print("********************Country Language Report********************\n");
+            //The Country Language Detail
+            ArrayList<Population> population10 = a.getCountryLanguageDetail();
+            a.displayCountryLanguageDetail(population10);
+            a.disconnect();
+        }
+        else
+        {
+            System.out.println("You've entered a wrong menu!!!!");
+            // Disconnect from database
+            a.disconnect();
+        }
+//        City c2 = a.getCity(2710);
+//        System.out.println(c2);
 
-        //All the cities in the world organised by largest population to smallest.
-        ArrayList<City> cities = a.getCity();
-        a.displayCity(cities);
-
-        //All the cities in a continent organised by largest population to smallest.
-        ArrayList<City> cities2=a.getCity_continent();
-        a.displayCityContinent(cities2);
-
-        //All the cities in a region organised by largest population to smallest.
-        ArrayList<City> cities3 = a.getCity_Region();
-        a.displayCityRegion(cities3);
-
-        // All the cities in a country organised by largest population to smallest.
-        ArrayList<City> cities4= a.getCitybyCountry();
-        a.displayCityCountry(cities4);
-
-        //All the cities in a district organised by largest population to smallest.
-        ArrayList<City> cities5 = a.getCitybyDistrict();
-        a.displayCityDistrict(cities5);
-
-        //All the capital cities in the world organised by largest population to smallest.
-        ArrayList<City> cities6 = a.getCapitalCities();
-        a.displayCapitalCities(cities6);
-
-        //All the capital cities in a continent organised by largest population to smallest.
-        ArrayList<City> cities7 = a.getCapitalCitiesbyContinent();
-        a.displayCapitalCitiesbyContinent(cities7);
-
-        //All the capital cities in a region organised by largest to smallest.
-        ArrayList<City> cities8 = a.getCapitalCitiesbyRegion();
-        a.displayCapitalCitiesbyRegion(cities8);
-
-        //Top N Countries in the world organised by largest to smallest.
-        ArrayList<Country> countries1 = a.gettopCountryWorld();
-        a.displayTopCountriesbyWorld(countries1);
-
-        //Top N populated countries in a continent where N is provided by the user
-        ArrayList<Country> countries2 = a.gettopCountryContinent();
-        a.displayTopCountriesbyContinent(countries2);
-
-        //Top N populated countries in a region where N is provided by the user.
-        ArrayList<Country> countries3 = a.gettopCountryRegion();
-        a.displayTopCountriesbyRegion(countries3);
-
-        //Top N populated cities in the world where N is provided by the user.
-        ArrayList<City> cities9 = a.gettopCityWorld();
-        a.displayTopCitiesWorld(cities9);
-
-        //Top N populated cities in a continent where N is provided by the user.
-        ArrayList<City> cities10 = a.gettopCityContinent();
-        a.displayTopCitiesContinent(cities10);
-
-        //Top N populated cities in a region where N is provided by the user.
-        ArrayList<City> cities11 = a.gettopCityRegion();
-        a.displayTopCitiesRegion(cities11);
-
-        //Top N populated cities in a country where N is provided by the user.
-        ArrayList<City> cities12 = a.gettopCityCountry();
-        a.displayTopCitiesCountry(cities12);
-
-        //Top N populated cities in a district where N is provided by the user.
-        ArrayList<City> cities13 = a.gettopCityDistrict();
-        a.displayTopCitiesDistrict(cities13);
-
-        //Top N populated capital cities in the world where N is provided by the user.
-        ArrayList<City> cities14 = a.gettopCapitalCityWorld();
-        a.displayTopCapitalCityWorld(cities14);
-
-        //Top N populated capital cities in a continent where N is provided by the user.
-        ArrayList<City> cities15 = a.gettopCapitalCityContinent();
-        a.displayTopCapitalCityContinent(cities15);
-
-        //Top N populated capital cities in a region where N is provided by the user.
-        ArrayList<City> cities16 = a.gettopCapitalCityRegion();
-        a.displayTopCapitalCityRegion(cities16);
-
-        //Population of People, People living in Cities, and People not living in Cities in each Continent
-        ArrayList<Population> population1 = a.getPopulationDetailContinent();
-        a.displayPopulationDetailContinent(population1);
-
-        //Population of People, People living in Cities, and People not living in Cities in each Region
-        ArrayList<Population> population2 = a.getPopulationDetailRegion();
-        a.displayPopulationDetailRegion(population2);
-
-        //Population of People, People living in Cities, and People not living in Cities in each Country
-        ArrayList<Population> population3 = a.getPopulationDetailCountry();
-        a.displayPopulationDetailCountry(population3);
-
-        //The population of the world
-        ArrayList<Population> population4 = a.getWorldPopulationDetail();
-        a.displayWorldPopulationDetail(population4);
-
-        //The population of a continent
-        ArrayList<Population> population5 = a.getContinentPopulationDetail();
-        a.displayContinentPopulationDetail(population5);
-
-        //The population of a region
-        ArrayList<Population> population6 = a.getRegionPopulationDetail();
-        a.displayRegionPopulationDetail(population6);
-
-        //The population of a country
-        ArrayList<Population> population7 = a.getCountryPopulationDetail();
-        a.displayCountryPopulationDetail(population7);
-
-        //The population of a district
-        ArrayList<Population> population8 = a.getDistrictPopulationDetail();
-        a.displayDistrictPopulationDetail(population8);
-
-        //The population of a city
-        ArrayList<Population> population9 = a.getCityPopulationDetail();
-        a.displayCityPopulationDetail(population9);
-
-        //The Country Language Detail
-        ArrayList<Population> population10 = a.getCountryLanguageDetail();
-        a.displayCountryLanguageDetail(population10);
-
-        //The Country Report
-        ArrayList<Country> cousr = a.getCountryReport();
-        a.displayCountryReport(cousr);
-
-        //The City Report
-        ArrayList<City> cityr = a.getCityReport();
-        a.displayCityReport(cityr);
-
-        //The City Report
-        ArrayList<City> cpcityr = a.getCapitalCityReport();
-        a.displayCapitalCityReport(cpcityr);
-
-        // Disconnect from database
-        a.disconnect();
     }
 
 
@@ -2220,7 +2398,7 @@ public class App {
     {
         // Check cities data is not null
         System.out.print("***********************Country Language Detail***********************\n");
-        System.out.printf("%20s%30s%30s", "Language","Percentage","Population\n");
+        System.out.printf("%20s%30s%    0s", "Language","Percentage","Population\n");
         for(Population po:population10)
         {
             if(po==null)
@@ -2229,168 +2407,5 @@ public class App {
             System.out.println("\n");
         }
         System.out.print("******************************************************************************************************************\n");
-    }
-
-    public ArrayList<Country> getCountryReport() {
-        ArrayList<Country> cousr = new ArrayList<>();
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Please enter a country to get report detail: ");
-            String countryreport = scanner.next(); // get string
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT  Code, Name, Continent, Region, Population, Capital FROM country WHERE name = '"+countryreport+"';";
-
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-
-            if (rset == null) {
-                System.out.println("Not Found");
-            } else {
-                //Return new city if valid.
-                //Check one is returned
-                while (rset.next()) {
-                    Country country = new Country();
-                    country.setCode(rset.getString(1));
-                    country.setName(rset.getString(2));
-                    country.setContinent(rset.getString(3));
-                    country.setRegion(rset.getString(4));
-                    country.setPopulation(rset.getInt(5));
-                    country.setCapital(rset.getInt(6));
-                    cousr.add(country);
-                }
-            }
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get a Country Report");
-        }
-        return cousr;
-    }
-
-    public void displayCountryReport(ArrayList<Country> cousr)
-    {
-        // Check cities data is not null
-        System.out.print("***********************Country Report***********************\n");
-        System.out.printf("%25s%25s%25s%25s%25s%25s","Code","Name","Continent","Region","Population","Capital\n");
-        for(Country cor:cousr)
-        {
-            if (cor==null)
-                continue;
-            System.out.printf("%25s%25s%25s%25s%25s%25s",cor.getCode(),cor.getName(),cor.getContinent(),cor.getRegion(),cor.getPopulation(),cor.getCapital());
-            System.out.print("\n");
-        }
-       }
-    public ArrayList<City> getCityReport() {
-        ArrayList<City> cityr = new ArrayList<>();
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Please enter a city to get report detail: ");
-            String cityreport = scanner.next(); // get string
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT  city.Name, country.Name, city.District, city.Population FROM city, country WHERE city.name = '"+cityreport+"' " +
-                            "and city.countrycode = country.code;";
-
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-
-            if (rset == null) {
-                System.out.println("Not Found");
-            } else {
-                //Return new city if valid.
-                //Check one is returned
-                while (rset.next()) {
-                    Country c = new Country();
-                    c.setName(rset.getString(2));
-
-                    City city = new City();
-                    city.setName(rset.getString(1));
-                    city.setCountry(c);
-                    city.setDistrict(rset.getString(3));
-                    city.setPopulation(rset.getInt(4));
-
-                    cityr.add(city);
-                }
-            }
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get a City Report");
-        }
-        return cityr;
-    }
-
-    public void displayCityReport(ArrayList<City> cityr)
-    {
-        // Check cities data is not null
-        System.out.print("***********************City Report***********************\n");
-        System.out.printf("%25s%25s%25s%25s","Name","Country","District","Population\n");
-        for(City cir:cityr)
-        {
-            if (cir==null)
-                continue;
-            System.out.printf("%25s%25s%25s%25s",cir.getName(),cir.getCountry().getName(), cir.getDistrict(),cir.getPopulation());
-            System.out.print("\n");
-        }
-    }
-    public ArrayList<City> getCapitalCityReport() {
-        ArrayList<City> cpcityr = new ArrayList<>();
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Please enter a capital city to get report detail: ");
-            String capitalcityreport = scanner.next(); // get string
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT  city.Name, country.Name, city.Population FROM city, country WHERE city.ID = '"+capitalcityreport+"' " +
-                            "and city.ID = country.Capital;";
-
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-
-            if (rset == null) {
-                System.out.println("Not Found");
-            } else {
-                //Return new city if valid.
-                //Check one is returned
-                while (rset.next()) {
-                    Country c = new Country();
-                    c.setName(rset.getString(2));
-
-                    City city = new City();
-                    city.setName(rset.getString(1));
-                    city.setCountry(c);
-                    city.setPopulation(rset.getInt(3));
-
-                    cpcityr.add(city);
-                }
-            }
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get a Capital City Report");
-        }
-        return cpcityr;
-    }
-
-    public void displayCapitalCityReport(ArrayList<City> cpcityr)
-    {
-        // Check cities data is not null
-        System.out.print("***********************Capital City Report***********************\n");
-        System.out.printf("%25s%25s%25s","Name","Country","Population\n");
-        for(City cpcir:cpcityr)
-        {
-            if (cpcir==null)
-                continue;
-            System.out.printf("%25s%25s%25s",cpcir.getName(),cpcir.getCountry().getName(),cpcir.getPopulation());
-            System.out.print("\n");
-        }
-
     }
 }

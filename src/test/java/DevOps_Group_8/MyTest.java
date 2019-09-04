@@ -12,6 +12,9 @@ import java.util.ArrayList;
 
 class AppTest
 {
+
+
+
     static App app;
 
     @BeforeAll
@@ -255,25 +258,6 @@ class AppTest
         popu.add(null);
         app.displayCountryLanguageDetail(popu);
     }
-    @Test
-    void displayCountryReportTEST(){
-        ArrayList<Country> popu = new ArrayList<>();
-        popu.add(null);
-        app.displayCountryReport(popu);
-    }
-    @Test
-    void displayCityReportTEST(){
-        ArrayList<City> popu = new ArrayList<>();
-        popu.add(null);
-        app.displayCityReport(popu);
-    }
-    @Test
-    void displayCapitalCityReportTEST(){
-        ArrayList<City> popu = new ArrayList<>();
-        popu.add(null);
-        app.displayCapitalCityReport(popu);
-    }
-    //=======================================================
 
     @Test
     void getcityTestNull(){
