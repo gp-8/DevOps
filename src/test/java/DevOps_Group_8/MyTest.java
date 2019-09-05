@@ -305,7 +305,15 @@ class AppTest
     }
     @Test
     void testingPopulation(){
+        Country c = new Country();
+        City cc = new City();
+        Language l = new Language();
+
         Population population = new Population();
+        population.setName("test");
+        population.setCountry(c);
+        population.setCity(cc);
+        population.setLanguage(l);
         population.setTotal_population(100);
         population.setPercent_in_city(20);
         population.setTotal_population(100);
@@ -313,6 +321,10 @@ class AppTest
         population.setPopulation_in_city(100);
         population.setPopulation_not_in_city(200);
         population.setPopulation_percent(100);
+        population.getName();
+        population.getCountry();
+        population.getCity();
+        population.getLanguage();
         population.getTotal_population();
         population.getPercent_in_city();
         population.getPopulation_in_city();
