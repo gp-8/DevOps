@@ -1171,7 +1171,7 @@ public class App {
         if(cties2==null){
             System.out.println("no data record for cities");
         }
-        System.out.print("***********************cities in a continent organised by largest population to smallest***********************\n");
+        System.out.print("**********************cities in a continent organised by largest population to smallest*************************************************\n");
         System.out.printf("%25s%25s%25s%25s%25s","Continent","Name","CountryCode","CityName","Population\n");
         for(City ct:cties2)
         {
@@ -1382,6 +1382,7 @@ public class App {
                     ci.setCountrycode(rset.getString(2));
                     ci.setDistrict(rset.getString(3));
                     ci.setPopulation(rset.getInt(4));
+                    cities.add(ci);
                 }
             }
         }
@@ -1406,10 +1407,10 @@ public class App {
         {
             if (ct == null)
                 continue;
-            System.out.printf("%20s%20s%20s%20s",ct.getName(),ct.getCountry(),ct.getDistrict(),ct.getPopulation());
+            System.out.printf("%20s%20s%20s%20s",ct.getName(),ct.getCountrycode(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("**************************************************************************************************************\n");
     }
 
     //getting capital cities in the world
