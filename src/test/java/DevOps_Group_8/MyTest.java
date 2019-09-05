@@ -279,6 +279,7 @@ class AppTest
         country.getPopulation();
         country.getCapital();
         country.getCode();
+        country.toString();
     }
     @Test
     void testingcity(){
@@ -294,6 +295,7 @@ class AppTest
         city.getPopulation();
         city.getDistrict();
         city.getCountrycode();
+        city.toString();
     }
     @Test
     void testinglanguage(){
@@ -306,6 +308,7 @@ class AppTest
         language.getPopulation_per_language();
         language.getCountrycode();
         language.getPercentage();
+        language.toString();
     }
     @Test
     void testingPopulation(){
@@ -335,6 +338,7 @@ class AppTest
         population.getPopulation_percent();
         population.getPercent_not_in_city();
         population.getPopulation_not_in_city();
+        population.toString();
     }
 
     @Test

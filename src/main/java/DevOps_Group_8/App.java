@@ -26,8 +26,8 @@ public class App {
         }
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("1. City Report\n" +
-                "2. Country Report\n" +
+        System.out.println("1. Country Report\n" +
+                "2. City Report\n" +
                 "3. Capital City\n" +
                 "4. Population\n" +
                 "5. Country Language\n");
@@ -49,28 +49,84 @@ public class App {
                 //All the countries in the world organised by largest population to smallest.
                 ArrayList<Country> cous = a.getCountry();
                 a.displayCountry(cous);
-                a.disconnect();
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }
             }
             else if (country.equals("2"))
             {
                 // Get All the countries in a continent organised by largest population to smallest.
                 ArrayList<Country> countries=a.countries_continent_largest_to_smallest();
                 a.displayCountries_continent_largest_to_smallest(countries);
-                a.disconnect();
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }
             }
             else if (country.equals("3"))
             {
                 // All the countries in a region organised by largest population to smallest.
                 ArrayList<Country> Countries=a.countries_region_largest_to_smallest();
                 a.displayCountries_region_largest_to_smallest(Countries);
-                a.disconnect();
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }
             }
             else if (country.equals("4"))
             {
                 //Top N Countries in the world organised by largest to smallest.
                 ArrayList<Country> countries1 = a.gettopCountryWorld();
                 a.displayTopCountriesbyWorld(countries1);
-                a.disconnect();
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }
 
             }
             else if (country.equals("5"))
@@ -78,7 +134,21 @@ public class App {
                 //Top N populated countries in a continent where N is provided by the user
                 ArrayList<Country> countries2 = a.gettopCountryContinent();
                 a.displayTopCountriesbyContinent(countries2);
-                a.disconnect();
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }
 
             }
             else if (country.equals("6"))
@@ -86,13 +156,41 @@ public class App {
                 //Top N populated countries in a region where N is provided by the user.
                 ArrayList<Country> countries3 = a.gettopCountryRegion();
                 a.displayTopCountriesbyRegion(countries3);
-                a.disconnect();
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }
             }
             else
             {
                 System.out.println("You've entered a wrong input!!");
                 // Disconnect from database
-                a.disconnect();
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }
             }
         }
         else if (menu.equals("2"))
@@ -115,57 +213,164 @@ public class App {
                 //All the cities in the world organised by largest population to smallest.
                 ArrayList<City> cities = a.getCity();
                 a.displayCity(cities);
-                a.disconnect();
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }
             }
             else if (city.equals("2"))
             {
                 //All the cities in a continent organised by largest population to smallest.
                 ArrayList<City> cities2=a.getCity_continent();
                 a.displayCityContinent(cities2);
-                a.disconnect();
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }
             }
             else if (city.equals("3"))
             {
                 //All the cities in a region organised by largest population to smallest.
                 ArrayList<City> cities3 = a.getCity_Region();
                 a.displayCityRegion(cities3);
-                a.disconnect();
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }
             }
             else if (city.equals("4"))
             {
                 // All the cities in a country organised by largest population to smallest.
                 ArrayList<City> cities4= a.getCitybyCountry();
                 a.displayCityCountry(cities4);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (city.equals("5"))
             {
                 //All the cities in a district organised by largest population to smallest.
                 ArrayList<City> cities5 = a.getCitybyDistrict();
                 a.displayCityDistrict(cities5);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (city.equals("6"))
             {
                 //Top N populated cities in the world where N is provided by the user.
                 ArrayList<City> cities9 = a.gettopCityWorld();
                 a.displayTopCitiesWorld(cities9);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (city.equals("7"))
             {
                 //Top N populated cities in a continent where N is provided by the user.
                 ArrayList<City> cities10 = a.gettopCityContinent();
                 a.displayTopCitiesContinent(cities10);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (city.equals("8"))
             {
                 //Top N populated cities in a region where N is provided by the user.
                 ArrayList<City> cities11 = a.gettopCityRegion();
                 a.displayTopCitiesRegion(cities11);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (city.equals("9"))
             {
                 //Top N populated cities in a country where N is provided by the user.
@@ -178,14 +383,40 @@ public class App {
                 //Top N populated cities in a district where N is provided by the user.
                 ArrayList<City> cities13 = a.gettopCityDistrict();
                 a.displayTopCitiesDistrict(cities13);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else
             {
                 System.out.println("You've entered a wrong input!!");
                 // Disconnect from database
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
         }
         else if (menu.equals("3"))
         {
@@ -203,48 +434,141 @@ public class App {
                 //All the capital cities in the world organised by largest population to smallest.
                 ArrayList<City> cities6 = a.getCapitalCities();
                 a.displayCapitalCities(cities6);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (capcity.equals("2"))
             {
                 //All the capital cities in a continent organised by largest population to smallest.
                 ArrayList<City> cities7 = a.getCapitalCitiesbyContinent();
                 a.displayCapitalCitiesbyContinent(cities7);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (capcity.equals("3"))
             {
                 //All the capital cities in a region organised by largest to smallest.
                 ArrayList<City> cities8 = a.getCapitalCitiesbyRegion();
                 a.displayCapitalCitiesbyRegion(cities8);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (capcity.equals("4"))
             {
                 //Top N populated capital cities in the world where N is provided by the user.
                 ArrayList<City> cities14 = a.gettopCapitalCityWorld();
                 a.displayTopCapitalCityWorld(cities14);
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }
             }
             else if (capcity.equals("5"))
             {
                 //Top N populated capital cities in a continent where N is provided by the user.
                 ArrayList<City> cities15 = a.gettopCapitalCityContinent();
                 a.displayTopCapitalCityContinent(cities15);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (capcity.equals("6"))
             {
                 //Top N populated capital cities in a region where N is provided by the user.
                 ArrayList<City> cities16 = a.gettopCapitalCityRegion();
                 a.displayTopCapitalCityRegion(cities16);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else
             {
                 System.out.println("You've entered a wrong input!!");
                 // Disconnect from database
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
         }
         else if (menu.equals("4"))
         {
@@ -265,70 +589,200 @@ public class App {
                 //Population of People, People living in Cities, and People not living in Cities in each Continent
                 ArrayList<Population> population1 = a.getPopulationDetailContinent();
                 a.displayPopulationDetailContinent(population1);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (population.equals("2"))
             {
                 //Population of People, People living in Cities, and People not living in Cities in each Region
                 ArrayList<Population> population2 = a.getPopulationDetailRegion();
                 a.displayPopulationDetailRegion(population2);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (population.equals("3"))
             {
                 //Population of People, People living in Cities, and People not living in Cities in each Country
                 ArrayList<Population> population3 = a.getPopulationDetailCountry();
                 a.displayPopulationDetailCountry(population3);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (population.equals("4"))
             {
                 //The population of the world
                 ArrayList<Population> population4 = a.getWorldPopulationDetail();
                 a.displayWorldPopulationDetail(population4);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (population.equals("5"))
             {
                 //The population of a continent
                 ArrayList<Population> population5 = a.getContinentPopulationDetail();
                 a.displayContinentPopulationDetail(population5);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (population.equals("6"))
             {
                 //The population of a region
                 ArrayList<Population> population6 = a.getRegionPopulationDetail();
                 a.displayRegionPopulationDetail(population6);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (population.equals("7"))
             {
                 //The population of a country
                 ArrayList<Population> population7 = a.getCountryPopulationDetail();
                 a.displayCountryPopulationDetail(population7);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (population.equals("8"))
             {
                 //The population of a district
                 ArrayList<Population> population8 = a.getDistrictPopulationDetail();
                 a.displayDistrictPopulationDetail(population8);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else if (population.equals("9"))
             {
                 //The population of a city
                 ArrayList<Population> population9 = a.getCityPopulationDetail();
                 a.displayCityPopulationDetail(population9);
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
             else
             {
                 System.out.println("You've entered a wrong input!!");
                 // Disconnect from database
-                a.disconnect();
-            }
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }            }
         }
         else if (menu.equals("5"))
         {
@@ -336,14 +790,40 @@ public class App {
             //The Country Language Detail
             ArrayList<Population> population10 = a.getCountryLanguageDetail();
             a.displayCountryLanguageDetail(population10);
-            a.disconnect();
-        }
+            System.out.println("Do you want to view other Menu? Y,N");
+            String input = scanner.next();
+            if (input.equals("Y"))
+            {
+                String list[]={};
+                a.main(list);
+            }
+            else if (input.equals("N"))
+            {
+                a.disconnect();
+            }
+            else
+            {
+                System.out.println("Invalid Input");
+            }        }
         else
         {
             System.out.println("You've entered a wrong menu!!!!");
             // Disconnect from database
-            a.disconnect();
-        }
+            System.out.println("Do you want to view other Menu? Y,N");
+            String input = scanner.next();
+            if (input.equals("Y"))
+            {
+                String list[]={};
+                a.main(list);
+            }
+            else if (input.equals("N"))
+            {
+                a.disconnect();
+            }
+            else
+            {
+                System.out.println("Invalid Input");
+            }        }
 //        City c2 = a.getCity(2710);
 //        System.out.println(c2);
 
@@ -761,6 +1241,7 @@ public class App {
         for(City ct:cties3)
         {
             if (ct==null)
+                continue;
             System.out.printf("%25s%25s%25s%25s",ct.getName(),ct.getDistrict(),ct.getPopulation(),ct.getCountry().getRegion());
             System.out.print("\n");
         }
