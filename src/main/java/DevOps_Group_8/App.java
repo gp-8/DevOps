@@ -376,7 +376,21 @@ public class App {
                 //Top N populated cities in a country where N is provided by the user.
                 ArrayList<City> cities12 = a.gettopCityCountry();
                 a.displayTopCitiesCountry(cities12);
-                a.disconnect();
+                System.out.println("Do you want to view other Menu? Y,N");
+                String input = scanner.next();
+                if (input.equals("Y"))
+                {
+                    String list[]={};
+                    a.main(list);
+                }
+                else if (input.equals("N"))
+                {
+                    a.disconnect();
+                }
+                else
+                {
+                    System.out.println("Invalid Input");
+                }
             }
             else if (city.equals("10"))
             {
@@ -1474,7 +1488,7 @@ public class App {
         {
             if (ct==null)
                 continue;
-            System.out.printf("%20s%20s%20s%20s", ct.getName(),ct.getCountry().getName(),ct.getDistrict(),ct.getPopulation());
+            System.out.printf("%20s%20s%20s%20s%20s", ct.getName(),ct.getCountry().getName(),ct.getCountry().getContinent(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
         System.out.print("******************************************************************************************************************\n");
@@ -1996,15 +2010,15 @@ public class App {
     {
         // Check cities data is not null
         System.out.print("***********************Top Populated Cities in Central America organised by largest population to smallest***********************\n");
-        System.out.printf("%20s%20s%30s%20s", "Name","District", "Population" ,"Region\n");
+        System.out.printf("%20s%20s%20s%20s", "Name","District","Population","Region\n");
         for(City ct:cities11)
         {
             if (ct==null)
                 continue;
-            System.out.printf("%20s%20s%30s%20s",ct.getName(),ct.getDistrict(), ct.getPopulation() ,ct.getCountry().getRegion());
+            System.out.printf("%20s%20s%20s%20s",ct.getName(),ct.getDistrict(), ct.getPopulation() ,ct.getCountry().getRegion());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("*********************************************************************************************************************************\n");
     }
 
     public ArrayList<City> gettopCityCountry()
@@ -2071,7 +2085,7 @@ public class App {
             System.out.printf("%20s%20s%30s%20s",ct.getCountry().getName(),ct.getName(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("*************************************************************************************************************************\n");
     }
 
     public ArrayList<City> gettopCityDistrict()
@@ -2200,7 +2214,7 @@ public class App {
         {
             if (ct==null)
                 continue;
-            System.out.printf("%20s%20s%20s%20s", ct.getName(),ct.getCountry().getName(),ct.getDistrict(),ct.getPopulation());
+            System.out.printf("%20s%20s%20s%20s%20s", ct.getName(),ct.getCountry().getName(),ct.getCountry().getContinent(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
         System.out.print("******************************************************************************************************************\n");
