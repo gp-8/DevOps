@@ -270,6 +270,7 @@ class AppTest
         country.setCode("ABC");
         country.setName("Test");
         country.setContinent("Test");
+        country.setRegion("Test");
         country.setPopulation(10000);
         country.setCapital (100);
         country.getName();
@@ -285,11 +286,13 @@ class AppTest
     void testingcity(){
         Country c = new Country();
         City   city = new City();
+        city.setId(1);
         city.setCountry(c);
         city.setName("Test");
         city.setCountrycode("TET");
         city.setDistrict("Test");
         city.setPopulation(1000);
+        city.getId();
         city.getCountry();
         city.getName();
         city.getPopulation();
