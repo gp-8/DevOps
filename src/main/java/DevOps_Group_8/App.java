@@ -1620,7 +1620,7 @@ public class App {
             System.out.println("No captial city record in a region");
             return;
         }
-        System.out.print("***********************Capital Cities in a Region organised by largest population to smallest***********************\n");
+        System.out.print("***********************Capital Cities in a Region organised by largest population to smallest*****************************\n");
         System.out.printf("%20s%20s%20s%20s%20s%20s", "Capital","Name","CountryName","Region","District","Population\n");
         for(City ct:cties8)
         {
@@ -1629,7 +1629,7 @@ public class App {
             System.out.printf("%20s%20s%20s%20s%20s%20s",ct.getCountry().getCapital(),ct.getName(),ct.getCountry().getName(),ct.getCountry().getRegion(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("**************************************************************************************************************************\n");
     }
 
     public ArrayList<Country> gettopCountryWorld()
@@ -2286,7 +2286,7 @@ public class App {
             System.out.printf("%20s%20s%20s%20s%20s%20s",ct.getCountry().getCapital(),ct.getName(),ct.getCountry().getName(),ct.getCountry().getContinent(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("****************************************************************************************************************************\n");
     }
 
     public ArrayList<City> gettopCapitalCityRegion()
@@ -2355,7 +2355,7 @@ public class App {
             System.out.printf("%20s%20s%20s%20s%20s%20s",ct.getCountry().getCapital(),ct.getName(),ct.getCountry().getName(),ct.getCountry().getRegion(),ct.getDistrict(),ct.getPopulation());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("**************************************************************************************************************************************\n");
     }
 
     public ArrayList<Population> getPopulationDetailContinent() {
@@ -2401,20 +2401,20 @@ public class App {
         }
         return populations;
     }
-
+    //1. The population of people, people living in cities, and people not living in cities in each continent.
     public void displayPopulationDetailContinent(ArrayList<Population> population1)
     {
         // Check cities data is not null
-        System.out.print("***********************Population of people, people living in Cities, and People not living in Cities in each Continent***********************\n");
-        System.out.printf("%30s%30s%30s%30s%30s%30s", "Continent","Total_Population","Population_in_Ciy","Percent_in_City","Population_not_in_City","Percent_not_in_City\n");
+        System.out.print("*************************************** Population of people, people living in Cities, and People not living in Cities in each Continent *************************************\n");
+        System.out.printf("%25s%25s%25s%25s%25s%25s", "Continent","Total_Population","Population_in_Ciy","Percent_in_City","Population_not_in_City","Percent_not_in_City\n");
         for(Population po:population1)
         {
             if(po==null)
                 continue;
-            System.out.printf("%30s%30s%30s%30s%30s%30s",po.getCountry().getContinent(),po.getTotal_population(),po.getPopulation_in_city(),po.getPercent_in_city(),po.getPopulation_not_in_city(),po.getPercent_not_in_city());
+            System.out.printf("%25s%25s%25s%25s%25s%25s",po.getCountry().getContinent(),po.getTotal_population(),po.getPopulation_in_city(),po.getPercent_in_city(),po.getPopulation_not_in_city(),po.getPercent_not_in_city());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("******************************************************************************************************************************************************************************\n");
     }
 
     public ArrayList<Population> getPopulationDetailRegion() {
@@ -2464,16 +2464,16 @@ public class App {
     public void displayPopulationDetailRegion(ArrayList<Population> population2)
     {
         // Check cities data is not null
-        System.out.print("***********************Population of people, people living in Cities, and People not living in Cities in each Region***********************\n");
-        System.out.printf("%30s%30s%30s%30s%30s%30s", "Region","Total_Population","Population_in_Ciy","Percent_in_City","Population_not_in_City","Percent_not_in_City\n");
+        System.out.print("**********************************Population of people, people living in Cities, and People not living in Cities in each Region****************************\n");
+        System.out.printf("%25s%25s%25s%25s%25s%25s", "Region","Total_Population","Population_in_Ciy","Percent_in_City","Population_not_in_City","Percent_not_in_City\n");
         for(Population po:population2)
         {
             if(po==null)
                 continue;
-            System.out.printf("%30s%30s%30s%30s%30s%30s",po.getCountry().getRegion(),po.getTotal_population(),po.getPopulation_in_city(),po.getPercent_in_city(),po.getPopulation_not_in_city(),po.getPercent_not_in_city());
+            System.out.printf("%25s%25s%25s%25s%25s%25s",po.getCountry().getRegion(),po.getTotal_population(),po.getPopulation_in_city(),po.getPercent_in_city(),po.getPopulation_not_in_city(),po.getPercent_not_in_city());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("***********************************************************************************************************************************************************\n");
     }
 
     public ArrayList<Population> getPopulationDetailCountry() {
@@ -2525,16 +2525,18 @@ public class App {
     public void displayPopulationDetailCountry(ArrayList<Population> population3)
     {
         // Check cities data is not null
-        System.out.print("***********************Population of people, people living in Cities, and People not living in Cities in each Country***********************\n");
-        System.out.printf("%30s%30s%30s%30s%30s%30s", "Region","Total_Population","Population_not_in_Ciy","Percent_not_in_City","Population_in_City","Percent_in_City\n");
+        System.out.print("******************************* Population of people, people living in Cities, and People not living in Cities in each Country *******************************\n");
+        System.out.print("\n");
+        System.out.printf("%25s%25s%25s%25s%25s%25s", "Region","Total_Population","Population_not_in_Ciy","Percent_not_in_City","Population_in_City","Percent_in_City\n");
+        System.out.print("\n");
         for(Population po:population3)
         {
             if(po==null)
                 continue;
-            System.out.printf("%30s%30s%30s%30s%30s%30s",po.getCountry().getName(),po.getCountry().getPopulation(),po.getPopulation_not_in_city(),po.getPercent_not_in_city(),po.getPopulation_in_city(),po.getPercent_in_city());
+            System.out.printf("%25s%25s%25s%25s%25s%25s",po.getCountry().getName(),po.getCountry().getPopulation(),po.getPopulation_not_in_city(),po.getPercent_not_in_city(),po.getPopulation_in_city(),po.getPercent_in_city());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("**************************************************************************************************************************************************************\n");
     }
 
     public ArrayList<Population> getWorldPopulationDetail() {
@@ -2571,16 +2573,17 @@ public class App {
     public void displayWorldPopulationDetail(ArrayList<Population> population4)
     {
         // Check cities data is not null
-        System.out.print("***********************The Population of the World***********************\n");
-        System.out.printf("%30s", "Population\n");
+        System.out.print("*********************** The Population of the World ***********************\n");
+        System.out.print("\n");
+        System.out.printf("%30s", "The Population of the whole world is:");
         for(Population po:population4)
         {
             if(po==null)
                 continue;
-            System.out.printf("%30s",po.getTotal_population());
+            System.out.println(po.getTotal_population());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("*************************************************************************\n");
     }
 
     public ArrayList<Population> getContinentPopulationDetail() {
@@ -2625,15 +2628,15 @@ public class App {
     {
         // Check cities data is not null
         System.out.print("***********************The Population of a Continent***********************\n");
-        System.out.printf("%20s%30s", "Continent","Population\n");
+        System.out.printf("%20s%25s", "Continent","Population\n");
         for(Population po:population5)
         {
             if(po==null)
                 continue;
-            System.out.printf("%20s%30s",po.getCountry().getContinent(),po.getTotal_population());
+            System.out.printf("%20s%25s",po.getCountry().getContinent(),po.getTotal_population());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("***************************************************************************\n");
     }
 
     public ArrayList<Population> getRegionPopulationDetail() {
@@ -2678,15 +2681,15 @@ public class App {
     {
         // Check cities data is not null
         System.out.print("***********************The Population of a Region***********************\n");
-        System.out.printf("%20s%30s", "Region","Population\n");
+        System.out.printf("%20s%25s", "Region","Population\n");
         for(Population po:population6)
         {
             if(po==null)
                 continue;
-            System.out.printf("%20s%30s",po.getCountry().getRegion(),po.getTotal_population());
+            System.out.printf("%20s%25s",po.getCountry().getRegion(),po.getTotal_population());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("*************************************************************************\n");
     }
 
 
@@ -2732,15 +2735,15 @@ public class App {
     {
         // Check cities data is not null
         System.out.print("***********************The Population of a Country***********************\n");
-        System.out.printf("%20s%30s", "Country","Population\n");
+        System.out.printf("%20s%25s", "Country","Population\n");
         for(Population po:population7)
         {
             if(po==null)
                 continue;
-            System.out.printf("%20s%30s",po.getCountry().getName(),po.getTotal_population());
+            System.out.printf("%20s%25s",po.getCountry().getName(),po.getTotal_population());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("*************************************************************************\n");
     }
 
     public ArrayList<Population> getDistrictPopulationDetail() {
@@ -2785,15 +2788,15 @@ public class App {
     {
         // Check cities data is not null
         System.out.print("***********************The Population of a District***********************\n");
-        System.out.printf("%20s%30s", "District","Population\n");
+        System.out.printf("%20s%25s", "District","Population\n");
         for(Population po:population8)
         {
             if(po==null)
                 continue;
-            System.out.printf("%20s%30s",po.getCity().getDistrict(),po.getTotal_population());
+            System.out.printf("%20s%25s",po.getCity().getDistrict(),po.getTotal_population());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("**************************************************************************\n");
     }
 
     public ArrayList<Population> getCityPopulationDetail() {
@@ -2838,12 +2841,12 @@ public class App {
     {
         // Check cities data is not null
         System.out.print("***********************The Population of a City***********************\n");
-        System.out.printf("%20s%30s", "City","Population\n");
+        System.out.printf("%20s%20s", "City","Population\n");
         for(Population po:population9)
         {
             if(po==null)
                 continue;
-            System.out.printf("%20s%30s",po.getCity().getName(),po.getCity().getPopulation());
+            System.out.printf("%20s%20s",po.getCity().getName(),po.getCity().getPopulation());
             System.out.println("\n");
         }
         System.out.print("******************************************************************************************************************\n");
