@@ -458,10 +458,10 @@ public class App {
     public void displayCountry(ArrayList<Country> cous)
     {
         System.out.print("***********************Countries in the World organised by largest population to smallest***********************\n");
-        System.out.printf("%25s%25s%25s%25s%25s%25s","Code","Name","Continent","Region","Population","Capital\n");
+        System.out.printf("%10s%25s%25s%25s%25s%25s","Code","Name","Continent","Region","Population","Capital\n");
         for(Country co:cous)
         {
-            System.out.printf("%25s%25s%25s%25s%25s%25s",co.getCode(),co.getName(),co.getContinent(),co.getRegion(),co.getPopulation(),co.getCapital());
+            System.out.printf("%10s%25s%25s%25s%25s%25s",co.getCode(),co.getName(),co.getContinent(),co.getRegion(),co.getPopulation(),co.getCapital());
             System.out.print("\n");
         }
         System.out.print("******************************************************************************************************************\n");
