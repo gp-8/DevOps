@@ -1,4 +1,4 @@
-# USE CASE: 24 The population of people, people living in cities, and people not living in cities in each country..
+# USE CASE: 24 The population of people, people living in cities, and people not living in cities in each country.
 
 ## CHARACTERISTIC INFORMATION
 
