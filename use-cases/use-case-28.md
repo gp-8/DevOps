@@ -1,9 +1,9 @@
-# USE CASE: 27 The population of a region.
+# USE CASE: 28 The population of a country.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
-Organization has asked to for the report for the population of a region.
+Organization has asked to for the report for the population of a country.
 
 ### Scope
 
@@ -15,7 +15,7 @@ Primary task.
 
 ### Preconditions
 
-Database provide the population of Caribbean.
+Database provide the population of Myanmar.
 
 ### Success End Condition
 
@@ -31,7 +31,7 @@ Organization
 
 ### Trigger
 
-Population of Caribbean is sent to Organization.
+Population of Myanmar is sent to Organization.
 
 ## MAIN SUCCESS SCENARIO
 

@@ -1,4 +1,4 @@
-# USE CASE: 25 The population of a continent.
+# USE CASE: 26 The population of a continent.
 
 ## CHARACTERISTIC INFORMATION
 
