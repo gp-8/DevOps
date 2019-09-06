@@ -800,7 +800,7 @@ public class App {
         }
         else if (menu.equals("5"))
         {
-            System.out.print("********************Country Language Report********************\n");
+            System.out.print("************************* Country Language Report ******************************\n");
             //The Country Language Detail
             ArrayList<Population> population10 = a.getCountryLanguageDetail();
             a.displayCountryLanguageDetail(population10);
@@ -2896,8 +2896,8 @@ public class App {
     public void displayCountryLanguageDetail(ArrayList<Population> population10)
     {
         // Check cities data is not null
-        System.out.print("***********************Country Language Detail***********************\n");
-        System.out.printf("%20s%30s%    0s", "Language","Percentage","Population\n");
+        //System.out.print("*********************** Country Language Detail *******************************\n");
+        System.out.printf("%20s%30s%30s", "Language","Percentage","Population\n");
         for(Population po:population10)
         {
             if(po==null)
@@ -2905,6 +2905,6 @@ public class App {
             System.out.printf("%20s%30s%30s",po.getLanguage().getLanguage(),po.getLanguage().getPopulation_per_language(),po.getPopulation_percent());
             System.out.println("\n");
         }
-        System.out.print("******************************************************************************************************************\n");
+        System.out.print("**********************************************************************************\n");
     }
 }
