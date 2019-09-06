@@ -52,6 +52,6 @@
 # Team Contribution Report 
 |      | Code Review 1 | Code Review 2 | Code Review 3 | Code Review 4 | Final Deliverable | Average |
 |------|---------------|---------------|---------------|---------------|-------------------|-------|
-| Hein Htut Aung | 0.33 | 0.33 | 0.33 | 0.33 | 0.33 | 0.33 |
-| Aye Chan Han | 0.33 | 0.33 | 0.33 | 0.33 | 0.33 | 0.33 |
-| Min Khant Naing | 0.33 | 0.33 | 0.33 | 0.33 | 0.33 | 0.33 |
+| Aye Chan Han | 0.33 | 0.33 | 0.4 | 0.4 | 0.4 | 0.4 |
+  Hein Htut Aung | 0.33 | 0.33 | 0.3 | 0.3 | 0.3 | 0.3 |
+| Min Khant Naing | 0.33 | 0.33 | 0.3 | 0.3 | 0.3 | 0.3 |
