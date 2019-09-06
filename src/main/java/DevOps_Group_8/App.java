@@ -6,7 +6,17 @@ import java.util.Scanner;
 
 
 /**
- * 
+ ***********************************************************************************************************
+ *  Copyright (c) 2019 Group 8
+ *
+ *  All right reserved. DO NOT COPY or ADAPT FROM THIS
+ *  CODE WITHOUT PERMISSION......
+ *
+ *  App : World Population System
+ *
+ *  Author : Group 8 - DevOps
+ *  Date : 16/8/2019
+ ***********************************************************************************************************
  */
 
 public class App {
